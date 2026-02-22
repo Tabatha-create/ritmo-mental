@@ -1,0 +1,261 @@
+/* 1. CONFIGURACIÓN DE COLORES Y FUENTES */
+:root {
+  --primary-blue: #003366;    /* Azul Navy: Confianza */
+  --dark-blue: #001A33;       /* Azul Profundo: Concentración */
+  --action-orange: #E65100;   /* Naranja Coral: Acción */
+  --bg-light: #F8FAFC;        /* Fondo claro: Descanso visual */
+  --white: #FFFFFF;
+  --text-main: #1A1A1A;
+}
+
+html { scroll-behavior: smooth; }
+
+body { 
+  font-family: 'Open Sans', sans-serif; 
+  background-color: var(--bg-light); 
+  color: var(--text-main); 
+  margin: 0; 
+  line-height: 1.6;
+}
+
+/* 2. CABECERA (Navegación) */
+header { 
+  background-color: var(--primary-blue); 
+  color: var(--white); 
+  padding: 1.5rem 5%; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  border-bottom: 5px solid var(--action-orange); 
+}
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo h1 { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; margin: 0; }
+nav a { color: white; text-decoration: none; font-weight: bold; font-size: 1.2rem; }
+
+/* 3. BANNER PRINCIPAL (Hero) */
+.hero { 
+  background-color: var(--primary-blue); 
+  color: var(--white); 
+  padding: 100px 5%; 
+  text-align: center; 
+}
+.hero h2 { font-size: 3rem; margin-bottom: 20px; }
+.highlight { color: #FFD700; }
+.hero p { font-size: 1.4rem; max-width: 700px; margin: 0 auto 30px; }
+
+/* 4. BOTONES "FINGER-FRIENDLY" (Fáciles de pulsar) */
+.btn-primary { 
+  background: var(--action-orange); 
+  color: white; 
+  border: none; 
+  padding: 22px 45px; 
+  font-size: 1.5rem; 
+  border-radius: 60px; 
+  cursor: pointer; 
+  font-weight: bold; 
+  box-shadow: 0 6px 0 #A04000;
+  transition: 0.1s;
+}
+.btn-primary:active { transform: translateY(4px); box-shadow: 0 2px 0 #A04000; }
+
+.btn-secondary { 
+  background: var(--white); 
+  color: var(--primary-blue); 
+  border: 4px solid var(--primary-blue); 
+  padding: 15px 30px; 
+  border-radius: 12px; 
+  cursor: pointer; 
+  font-weight: bold; 
+  font-size: 1.3rem; 
+}
+
+.btn-text { background: none; border: none; color: #666; text-decoration: underline; margin-top: 25px; cursor: pointer; font-size: 1.1rem; }
+
+/* 5. MENÚ DE JUEGOS (Tarjetas Gigantes) */
+.container { padding: 80px 10%; text-align: center; }
+.section-title { font-size: 2.8rem; color: var(--primary-blue); margin-bottom: 20px; }
+.subtitle { font-size: 1.4rem; color: #555; margin-bottom: 50px; }
+
+.game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.game-card { 
+  background: var(--white); 
+  padding: 50px 30px; 
+  border-radius: 30px; 
+  border: 4px solid #E2E8F0; 
+  cursor: pointer; 
+  transition: 0.3s; 
+}
+.game-card:hover { transform: translateY(-10px); border-color: var(--primary-blue); }
+.game-card.active-card { border-color: var(--action-orange); background: #FFF9F5; }
+.game-icon { font-size: 5rem; margin-bottom: 20px; display: block; }
+.game-card h3 { font-size: 1.8rem; margin: 15px 0; color: var(--primary-blue); }
+.badge { background: var(--primary-blue); color: white; padding: 8px 20px; border-radius: 30px; font-size: 1.1rem; }
+
+/* 6. ÁREAS DE JUEGO (Colores y Estructura) */
+.dark-section { background-color: var(--dark-blue); color: white; }
+.white { color: white !important; }
+
+/* Grilla de productos e intrusos */
+.items-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 25px; 
+  max-width: 600px; 
+  margin: 40px auto; 
+}
+.item-card { 
+  background: var(--white); 
+  border-radius: 20px; 
+  padding: 35px; 
+  font-size: 4.5rem; 
+  cursor: pointer; 
+  border: 5px solid transparent; 
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  display: flex; align-items: center; justify-content: center;
+}
+.item-correct { border-color: #27AE60 !important; background: #E8F5E9; }
+.item-incorrect { border-color: #E74C3C !important; background: #FDEDEC; }
+
+/* Juego Colores */
+.color-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 320px; margin: 30px auto; }
+.color-box { width: 150px; height: 150px; border-radius: 25px; cursor: pointer; border: 5px solid rgba(255,255,255,0.2); }
+.color-box.rojo { background: #E74C3C; }
+.color-box.azul { background: #3498DB; }
+.color-box.verde { background: #27AE60; }
+.color-box.amarillo { background: #F1C40F; }
+.active-glow { transform: scale(1.15); filter: brightness(1.7); box-shadow: 0 0 50px white; border-color: white !important; }
+
+/* Juego Refranes */
+.refran-container { max-width: 700px; margin: 0 auto; padding: 40px; border: 3px dashed var(--primary-blue); border-radius: 30px; background: white; }
+.refran-frase { font-size: 2rem; color: var(--dark-blue); font-weight: bold; margin-bottom: 40px; }
+.refran-hueco { color: var(--action-orange); border-bottom: 5px solid var(--action-orange); padding: 0 15px; }
+.opcion-btn { background: #F1F5F9; border: 3px solid var(--primary-blue); padding: 20px; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 1.3rem; margin-bottom: 10px; width: 100%; text-align: left; }
+.opcion-correcta { background: #27AE60 !important; color: white; border-color: #27AE60; }
+.opcion-incorrecta { background: #E74C3C !important; color: white; border-color: #E74C3C; }
+
+/* Mensajes de Feedback */
+.feedback-msg { min-height: 60px; margin: 25px 0; font-weight: bold; font-size: 1.8rem; }
+
+/* 7. PIE DE PÁGINA (Footer) */
+footer { background: #E1E8ED; padding: 60px 5%; text-align: center; border-top: 2px solid #CCC; font-size: 1.1rem; }
+
+/* 8. ADAPTACIÓN A MÓVILES (Responsive) */
+@media (max-width: 700px) {
+  .items-grid { grid-template-columns: 1fr 1fr; }
+  .color-grid { max-width: 280px; }
+  .color-box { width: 130px; height: 130px; }
+  .section-title { font-size: 2rem; }
+  .hero h2 { font-size: 2rem; }
+}
+
+/* --- SECCIÓN BLOG --- */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.blog-card {
+  background: var(--white);
+  border-radius: 25px;
+  overflow: hidden;
+  border: 3px solid #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  transition: 0.3s;
+}
+
+.blog-card:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-5px);
+}
+
+.blog-emoji {
+  background: var(--bg-light);
+  font-size: 4rem;
+  padding: 40px;
+  text-align: center;
+  border-bottom: 2px solid #E2E8F0;
+}
+
+.blog-content {
+  padding: 25px;
+}
+
+.blog-content h3 {
+  color: var(--primary-blue);
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+.blog-content p {
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.btn-leer {
+  display: inline-block;
+  margin-top: 15px;
+  color: var(--action-orange);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: 2px solid var(--action-orange);
+  padding: 10px 20px;
+  border-radius: 12px;
+  transition: 0.2s;
+}
+
+.btn-leer:hover {
+  background: var(--action-orange);
+  color: white;
+}
+
+/* --- SECCIÓN SUSCRIPCIÓN --- */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.registro-form {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.input-group {
+  margin-bottom: 25px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: var(--primary-blue);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 18px;
+  font-size: 1.3rem;
+  border: 3px solid #E2E8F0;
+  border-radius: 15px;
+  box-sizing: border-box; /* Importante para el ancho */
+  color: var(--text-main);
+}
+
+.input-group input:focus {
+  border-color: var(--action-orange);
+  outline: none;
+}
+
+.registro-form .btn-primary {
+  width: 100%; /* Botón que ocupa todo el ancho */
+  margin-top: 10px;
+}

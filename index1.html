@@ -1,0 +1,196 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ritmo Mental | Entrenamiento Cognitivo</title>
+  <link href="https://fonts.googleapis.com" rel="stylesheet">
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="logo-icon">🧠</span>
+      <h1>Ritmo Mental</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#actividades">Juegos</a></li>
+        <li><a href="#beneficios">Beneficios</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="inicio" class="hero">
+    <div class="hero-content">
+      <h2>Entrena tu mente, <br><span class="highlight">mejora tu día.</span></h2>
+      <p>Ejercicios diseñados para mantener tu memoria y atención en plena forma.</p>
+      <button class="btn-primary" onclick="irAlJuego('actividades')">¡Empezar ahora!</button>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 1: MENÚ DE JUEGOS -->
+  <section id="actividades" class="container">
+    <h2 class="section-title">Gimnasio Cerebral</h2>
+    <p class="subtitle">Elige el área que quieres fortalecer hoy:</p>
+    <div class="game-grid">
+      <div class="game-card active-card" onclick="irAlJuego('micro-reto')">
+        <div class="game-icon">🎨</div>
+        <h3>Memoria Visual</h3>
+        <p>Repite la secuencia de colores.</p>
+        <span class="badge">Jugar</span>
+      </div>
+      <div class="game-card active-card" onclick="irAlJuego('reto-refranes')">
+        <div class="game-icon">📚</div>
+        <h3>Refranes</h3>
+        <p>Completa la sabiduría popular.</p>
+        <span class="badge">Jugar</span>
+      </div>
+      <div class="game-card active-card" onclick="irAlJuego('reto-despensa')">
+        <div class="game-icon">🛒</div>
+        <h3>La Despensa</h3>
+        <p>Memoriza los productos y encuéntralos.</p>
+        <span class="badge">Jugar</span>
+    </div>
+    <div class="game-card active-card" onclick="irAlJuego('reto-intruso')">
+        <div class="game-icon">🔎</div>
+        <h3>El Intruso</h3>
+        <p>Encuentra el objeto que no encaja en el grupo.</p>
+        <span class="badge">Jugar</span>
+    </div>
+    </div>
+  </section>
+
+  <!-- JUEGO 1: COLORES -->
+  <section id="micro-reto" class="container dark-section">
+    <h2 class="section-title white">Reto de Memoria Visual</h2>
+    <div class="reto-container">
+      <div class="color-grid">
+        <div class="color-box rojo" data-color="rojo"></div>
+        <div class="color-box azul" data-color="azul"></div>
+        <div class="color-box verde" data-color="verde"></div>
+        <div class="color-box amarillo" data-color="amarillo"></div>
+      </div>
+      <div id="reto-msg" class="feedback-msg">Pulsa el botón para empezar</div>
+      <button id="start-reto" class="btn-secondary">Iniciar Secuencia</button>
+      <button class="btn-text" onclick="irAlJuego('actividades')">⬅ Volver al Menú</button>
+    </div>
+  </section>
+
+  <!-- JUEGO 2: REFRANES -->
+  <section id="reto-refranes" class="container light-section">
+    <h2 class="section-title">Sabiduría Popular</h2>
+    <div class="refran-container">
+      <div class="refran-frase">
+        <span id="refran-inicio">"..."</span>
+        <span class="refran-hueco" id="refran-destino">¿?</span>
+      </div>
+      <div class="opciones-grid" id="opciones-refranes"></div>
+      <div id="refran-feedback" class="feedback-msg"></div>
+      <button id="next-refran" class="btn-secondary" style="display:none;">Siguiente Refrán</button>
+      <br>
+      <button class="btn-text" onclick="irAlJuego('actividades')">⬅ Volver al Menú</button>
+    </div>
+  </section>
+
+  <section id="reto-despensa" class="container dark-section">
+  <h2 class="section-title white">La Despensa</h2>
+  <p class="instr">Memoriza los productos de la lista y luego júntalos todos.</p>
+  
+  <div class="despensa-container">
+    <!-- Fase 1: Memorizar lista -->
+    <div id="lista-memorizar" class="items-grid"></div>
+    
+    <!-- Fase 2: Estantería para elegir -->
+    <div id="estanteria" class="items-grid" style="display:none;"></div>
+    
+    <div id="despensa-msg" class="feedback-msg">Haz clic en Iniciar para ver la lista</div>
+    <button id="start-despensa" class="btn-secondary">Iniciar Lista</button>
+    <br>
+    <button class="btn-text white" onclick="irAlJuego('actividades')">⬅ Volver al Menú</button>
+  </div>
+</section>
+
+<section id="reto-intruso" class="container light-section">
+  <h2 class="section-title">Encuentra al Intruso</h2>
+  <p class="instr">Uno de estos objetos no pertenece al mismo grupo que los demás. ¿Sabes cuál es?</p>
+
+  <div class="intruso-container">
+    <div id="intruso-grid" class="items-grid">
+      <!-- Se carga por JS -->
+    </div>
+    
+    <div id="intruso-feedback" class="feedback-msg"></div>
+    <button id="next-intruso" class="btn-secondary" style="display:none;">Siguiente Reto</button>
+    <br>
+    <button class="btn-text" onclick="irAlJuego('actividades')">⬅ Volver al Menú</button>
+  </div>
+</section>
+
+<section id="blog" class="container">
+  <h2 class="section-title">Consejos para una Mente Joven</h2>
+  <p class="subtitle">Artículos breves y útiles para tu día a día.</p>
+  
+  <div class="blog-grid">
+    <!-- Artículo 1 -->
+    <article class="blog-card">
+      <div class="blog-emoji">🍎</div>
+      <div class="blog-content">
+        <h3>Alimentos que cuidan tu memoria</h3>
+        <p>Descubre por qué los arándanos y las nueces son los mejores amigos de tu cerebro.</p>
+        <a href="#" class="btn-leer">Leer consejo →</a>
+      </div>
+    </article>
+
+    <!-- Artículo 2 -->
+    <article class="blog-card">
+      <div class="blog-emoji">📱</div>
+      <div class="blog-content">
+        <h3>WhatsApp para abuelos: trucos útiles</h3>
+        <p>Aprende a hacer videollamadas y enviar fotos a tus nietos de forma sencilla.</p>
+        <a href="#" class="btn-leer">Ver guía →</a>
+      </div>
+    </article>
+
+    <!-- Artículo 3 -->
+    <article class="blog-card">
+      <div class="blog-emoji">🚶‍♂️</div>
+      <div class="blog-content">
+        <h3>Caminar: el mejor ejercicio mental</h3>
+        <p>Solo 20 minutos al día ayudan a oxigenar tu mente y mejorar tu estado de ánimo.</p>
+        <a href="#" class="btn-leer">Saber más →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="suscripcion" class="container dark-section">
+  <div class="form-container">
+    <h2 class="section-title white">¡Recibe consejos en tu correo!</h2>
+    <p class="subtitle white">Únete a más de 500 personas que entrenan su mente cada semana.</p>
+    
+    <form id="registro-form" class="registro-form">
+      <div class="input-group">
+        <label for="nombre">Tu nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ej: Carmen García" required>
+      </div>
+      
+      <div class="input-group">
+        <label for="email">Tu correo electrónico:</label>
+        <input type="email" id="email" name="email" placeholder="nombre@correo.com" required>
+      </div>
+      
+      <button type="submit" class="btn-primary">¡Quiero apuntarme!</button>
+    </form>
+    <div id="form-msg" class="feedback-msg"></div>
+  </div>
+</section>
+
+  <footer id="beneficios">
+    <p><strong>Ritmo Mental</strong> - Diseño accesible para mayores.</p>
+    <p>© 2026. Tu bienestar cognitivo es nuestra prioridad.</p>
+  </footer>
+
+  <script src="script1.js"></script>
+</body>
+</html>
