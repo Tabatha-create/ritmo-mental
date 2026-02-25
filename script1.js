@@ -59,6 +59,7 @@ startRetoBtn.addEventListener('click', iniciarColores);
 const banco = [
     { i: "A quien madruga...", c: "Dios le ayuda", o: ["Sale el sol", "Dios le ayuda", "Poco le ayuda"] },
     { i: "Al mal tiempo...", c: "buena cara", o: ["buena cara", "mucho abrigo", "paraguas nuevo"] }
+    { i: "En boca cerrada...", c: "no entran moscas", o: ["no cabe nada", "no entran moscas", "faltan palabras"] }
 ];
 let refIdx = 0;
 
