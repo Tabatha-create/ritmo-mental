@@ -58,8 +58,10 @@ startRetoBtn.addEventListener('click', iniciarColores);
 // --- JUEGO 2: REFRANES ---
 const banco = [
     { i: "A quien madruga...", c: "Dios le ayuda", o: ["Sale el sol", "Dios le ayuda", "Poco le ayuda"] },
-    { i: "Al mal tiempo...", c: "buena cara", o: ["buena cara", "mucho abrigo", "paraguas nuevo"] }
-    { i: "En boca cerrada...", c: "no entran moscas", o: ["no cabe nada", "no entran moscas", "faltan palabras"] }
+    { i: "Al mal tiempo...", c: "buena cara", o: ["buena cara", "mucho abrigo", "paraguas nuevo"] },
+     { i: "A falta de pan...", c: "buenas son tortas", o: ["nada que comer", "buenas son tortas", "comemos lo que hay"] },
+      { i: "A caballo regalado...", c: "no se le mira el colmillo", o: ["no se le mira el colmillo", "algo hay que regalar", "no sabemos lo que quiere"] },
+       { i: "A buen entendedor...", c: "pocas palabras bastan", o: ["mucho que agradecer", "ausencia y olvido", "pocas palabras bastan"] }
 ];
 let refIdx = 0;
 
@@ -227,4 +229,107 @@ registroForm.addEventListener('submit', (e) => {
     setTimeout(() => { formMsg.textContent = ""; }, 5000);
 });
 
+/* =========================
+   SOPA DE LETRAS MEJORADA
+========================= */
 
+const letrasSopa = [
+  ["P","A","N","F","L","O"],
+  ["E","C","A","S","A","R"],
+  ["R","L","E","C","H","E"],
+  ["R","M","E","S","A","T"],
+  ["O","A","F","L","O","R"],
+  ["T","E","R","R","O","P"]
+];
+
+const palabrasSopa = ["PAN","LECHE","CASA","MESA","FLOR","PERRO"];
+
+const gridSopa = document.getElementById("grid-sopa");
+const mensajeSopa = document.getElementById("sopa-msg");
+
+let seleccion = [];
+let bloqueadoSopa = false;
+
+function iniciarSopa() {
+  gridSopa.innerHTML = "";
+  seleccion = [];
+  bloqueadoSopa = false;
+
+  letrasSopa.forEach((fila, filaIndex) => {
+    fila.forEach((letra, colIndex) => {
+
+      const div = document.createElement("div");
+      div.textContent = letra;
+      div.classList.add("celda-sopa");
+      div.dataset.fila = filaIndex;
+      div.dataset.col = colIndex;
+
+      div.addEventListener("click", () => seleccionarCelda(div));
+
+      gridSopa.appendChild(div);
+    });
+  });
+
+  mensajeSopa.textContent = "Busca una palabra horizontal o vertical 🌿";
+}
+
+function seleccionarCelda(celda) {
+
+  if (bloqueadoSopa) return;
+
+  const fila = parseInt(celda.dataset.fila);
+  const col = parseInt(celda.dataset.col);
+
+  if (celda.classList.contains("encontrada-sopa")) return;
+
+  // Primera selección
+  if (seleccion.length === 0) {
+    seleccion.push({fila, col, celda});
+    celda.classList.add("seleccionada-sopa");
+    return;
+  }
+
+  const ultima = seleccion[seleccion.length - 1];
+
+  // Solo permitir contiguas horizontal o vertical
+  const esContigua =
+    (fila === ultima.fila && Math.abs(col - ultima.col) === 1) ||
+    (col === ultima.col && Math.abs(fila - ultima.fila) === 1);
+
+  if (!esContigua) return;
+
+  seleccion.push({fila, col, celda});
+  celda.classList.add("seleccionada-sopa");
+
+  verificarSopa();
+}
+
+function verificarSopa() {
+
+  const palabraFormada = seleccion.map(s => s.celda.textContent).join("");
+
+  if (palabrasSopa.includes(palabraFormada)) {
+
+    mensajeSopa.textContent = "Muy bien 👏 Encontraste: " + palabraFormada;
+
+    seleccion.forEach(s => {
+      s.celda.classList.remove("seleccionada-sopa");
+      s.celda.classList.add("encontrada-sopa");
+    });
+
+    seleccion = [];
+
+  } else if (palabraFormada.length >= 6) {
+
+    // Si no coincide y ya es larga, reset
+    mensajeSopa.textContent = "Intenta otra combinación 🌿";
+
+    seleccion.forEach(s => {
+      s.celda.classList.remove("seleccionada-sopa");
+    });
+
+    seleccion = [];
+  }
+}
+
+document.addEventListener("DOMContentLoaded", iniciarSopa);
