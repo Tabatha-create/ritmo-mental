@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ritmo Mental | Entrenamiento Cognitivo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ritmo-mental.css">
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="volverInicio()">
+    <div class="logo-brain">🧠</div>
+    <h1>Ritmo Mental</h1>
+  </div>
+  <nav><ul>
+    <li><a href="#" onclick="volverInicio()">Inicio</a></li>
+    <li><a href="#" onclick="irAlJuego('actividades')">Juegos</a></li>
+    <li><a href="#" onclick="irAlJuego('blog')">Blog</a></li>
+  </ul></nav>
+</header>
+
+<div id="main-content">
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Entrena tu mente,<br><span class="highlight">mejora tu día.</span></h2>
+      <p>Juegos diseñados para mantener tu memoria y atención en plena forma.</p>
+      <button class="btn-primary" onclick="irAlJuego('actividades')">¡Empezar ahora!</button>
+    </div>
+  </section>
+
+  <section id="actividades" class="section" style="scroll-margin-top:80px;">
+    <h2 class="section-title">🏋️ Gimnasio Cerebral</h2>
+    <p class="subtitle">Elige el ejercicio que quieres hacer hoy:</p>
+    <div class="game-grid">
+      <div class="game-card" onclick="mostrarJuego('juego-colores')"><span class="game-icon">🎨</span><h3>Memoria Visual</h3><p>Repite la secuencia de colores.</p><span class="badge">Jugar</span></div>
+      <div class="game-card" onclick="mostrarJuego('juego-refranes')"><span class="game-icon">📚</span><h3>Refranes</h3><p>Completa la sabiduría popular.</p><span class="badge">Jugar</span></div>
+      <div class="game-card" onclick="mostrarJuego('juego-despensa')"><span class="game-icon">🛒</span><h3>La Despensa</h3><p>Memoriza los productos y encuéntralos.</p><span class="badge">Jugar</span></div>
+      <div class="game-card" onclick="mostrarJuego('juego-intruso')"><span class="game-icon">🔎</span><h3>El Intruso</h3><p>Encuentra el objeto que no encaja.</p><span class="badge">Jugar</span></div>
+      <div class="game-card" onclick="mostrarJuego('juego-sopa')"><span class="game-icon">🔤</span><h3>Sopa de Letras</h3><p>5 temáticas: animales, frutas, países...</p><span class="badge">Jugar</span></div>
+      <div class="game-card" onclick="mostrarJuego('juego-sudoku')"><span class="game-icon">🔢</span><h3>Sudoku</h3><p>3 niveles: Fácil, Medio y Difícil.</p><span class="badge">Jugar</span></div>
+    </div>
+  </section>
+
+  <div style="background:var(--warm);">
+    <section class="section">
+      <h2 class="section-title">¿Por qué entrenar tu mente?</h2>
+      <p class="subtitle">Pequeños ejercicios diarios marcan una gran diferencia.</p>
+      <div class="benefits-grid">
+        <div class="benefit-card"><div class="benefit-icon">🧩</div><h3>Mejora la memoria</h3><p>Ejercitar la mente ayuda a recordar mejor los detalles del día a día.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">🎯</div><h3>Más atención</h3><p>Entrena tu capacidad de concentrarte y no perder el hilo.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">😊</div><h3>Más ánimo</h3><p>Los juegos estimulan la mente y generan bienestar emocional.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">🌱</div><h3>Hábito saludable</h3><p>Solo 10 minutos al día son suficientes para notar los beneficios.</p></div>
+      </div>
+    </section>
+  </div>
+
+  <section id="blog" class="section" style="scroll-margin-top:80px;">
+    <h2 class="section-title">Consejos para una Mente Joven</h2>
+    <p class="subtitle">Artículos breves y útiles para tu día a día.</p>
+    <div class="blog-grid">
+      <article class="blog-card"><div class="blog-emoji">🍎</div><div><h3>Alimentos que cuidan tu memoria</h3><p>Descubre por qué los arándanos y las nueces son los mejores amigos de tu cerebro.</p><a href="#" class="btn-leer">Leer consejo →</a></div></article>
+      <article class="blog-card"><div class="blog-emoji">📱</div><div><h3>WhatsApp para mayores: trucos útiles</h3><p>Aprende a hacer videollamadas y enviar fotos a tus nietos de forma sencilla.</p><a href="#" class="btn-leer">Ver guía →</a></div></article>
+      <article class="blog-card"><div class="blog-emoji">🚶‍♂️</div><div><h3>Caminar: el mejor ejercicio mental</h3><p>Solo 20 minutos al día ayudan a oxigenar tu mente y mejorar tu estado de ánimo.</p><a href="#" class="btn-leer">Saber más →</a></div></article>
+    </div>
+  </section>
+
+  <div style="background:var(--teal-d);padding:70px 40px;">
+    <section class="section" style="padding:0;">
+      <h2 class="section-title white">¡Recibe consejos en tu correo!</h2>
+      <p class="subtitle white">Únete a más de 500 personas que entrenan su mente cada semana.</p>
+      <div class="registro-form">
+        <div class="input-group"><label>Tu nombre:</label><input type="text" id="nombre" placeholder="Ej: Carmen García"></div>
+        <div class="input-group"><label>Tu correo electrónico:</label><input type="email" id="email" placeholder="nombre@correo.com"></div>
+        <button class="btn-primary" onclick="enviarFormulario()">¡Quiero apuntarme!</button>
+        <div id="form-msg" class="feedback-msg" style="text-align:center;"></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- JUEGO 1: COLORES -->
+<div id="juego-colores" class="game-section bg-dark">
+  <div class="game-inner">
+    <h2 class="section-title white">🎨 Memoria Visual</h2>
+    <p style="color:rgba(255,255,255,.8);margin-bottom:10px;">Observa la secuencia y repítela haciendo clic en el mismo orden.</p>
+    <div class="color-grid">
+      <div class="color-box rojo"    data-color="rojo"    onclick="clicColor(this)"></div>
+      <div class="color-box azul"    data-color="azul"    onclick="clicColor(this)"></div>
+      <div class="color-box verde"   data-color="verde"   onclick="clicColor(this)"></div>
+      <div class="color-box amarillo"data-color="amarillo"onclick="clicColor(this)"></div>
+    </div>
+    <div id="colores-msg" class="feedback-msg">Pulsa el botón para empezar</div>
+    <button id="start-colores" class="btn-secondary" onclick="iniciarColores()">Iniciar Secuencia</button><br>
+    <button class="btn-back" onclick="volverMenu()">⬅ Volver al Menú</button>
+  </div>
+</div>
+
+<!-- JUEGO 2: REFRANES -->
+<div id="juego-refranes" class="game-section bg-warm">
+  <div class="game-inner">
+    <h2 class="section-title">📚 Sabiduría Popular</h2>
+    <p style="color:var(--mid);">¿Cuál es la palabra que completa el refrán?</p>
+    <div class="refran-frase"><span id="refran-inicio"></span> <span class="refran-hueco" id="refran-destino">...</span></div>
+    <div class="opciones-grid" id="opciones-refranes"></div>
+    <div id="refran-feedback" class="feedback-msg light"></div>
+    <button id="next-refran" class="btn-secondary" style="display:none;" onclick="siguienteRefran()">Siguiente →</button><br>
+    <button class="btn-back-light" onclick="volverMenu()">⬅ Volver al Menú</button>
+  </div>
+</div>
+
+<!-- JUEGO 3: DESPENSA -->
+<div id="juego-despensa" class="game-section bg-dark">
+  <div class="game-inner">
+    <h2 class="section-title white">🛒 La Despensa</h2>
+    <p id="despensa-instr" style="color:rgba(255,255,255,.8);margin-bottom:10px;">Memoriza los productos y luego encuéntralos.</p>
+    <div id="lista-memorizar" class="items-grid"></div>
+    <div id="estanteria" class="items-grid" style="display:none;"></div>
+    <div id="despensa-msg" class="feedback-msg">Haz clic en Iniciar para comenzar</div>
+    <button id="start-despensa" class="btn-secondary" onclick="iniciarDespensa()">Iniciar</button><br>
+    <button class="btn-back" onclick="volverMenu()">⬅ Volver al Menú</button>
+  </div>
+</div>
+
+<!-- JUEGO 4: INTRUSO -->
+<div id="juego-intruso" class="game-section bg-warm">
+  <div class="game-inner">
+    <h2 class="section-title">🔎 Encuentra al Intruso</h2>
+    <p style="color:var(--mid);">Uno de estos objetos no pertenece al mismo grupo. ¿Cuál es?</p>
+    <div id="intruso-grid" class="intruso-grid"></div>
+    <div id="intruso-feedback" class="feedback-msg light"></div>
+    <button id="next-intruso" class="btn-secondary" style="display:none;" onclick="siguienteIntruso()">Siguiente →</button><br>
+    <button class="btn-back-light" onclick="volverMenu()">⬅ Volver al Menú</button>
+  </div>
+</div>
+
+<!-- JUEGO 5: SOPA DE LETRAS -->
+<div id="juego-sopa" class="game-section bg-cream">
+  <div class="game-inner" style="max-width:800px;">
+    <h2 class="section-title">🔤 Sopa de Letras</h2>
+    <p style="color:var(--mid);margin-bottom:20px;">Elige una temática y encuentra todas las palabras. Haz clic en cada letra en orden.</p>
+    <div class="sopa-temas" id="sopa-temas"></div>
+    <ul id="lista-palabras" class="lista-palabras"></ul>
+    <div id="grid-sopa" class="sopa-grid"></div>
+    <div id="sopa-msg" class="feedback-msg light"></div>
+    <button id="nueva-sopa-btn" class="btn-secondary" onclick="nuevaSopaMismaTema()" style="margin-right:10px;">🔄 Nueva sopa</button><br>
+    <button class="btn-back-light" onclick="volverMenu()">⬅ Volver al Menú</button>
+  </div>
+</div>
+
+<!-- JUEGO 6: SUDOKU -->
+<div id="juego-sudoku" class="game-section bg-cream">
+  <div class="game-inner" style="max-width:540px;">
+    <h2 class="section-title">🔢 Sudoku</h2>
+    <p style="color:var(--mid);margin-bottom:20px;">Rellena cada fila, columna y cuadro 3×3 con los números del 1 al 9.</p>
+    <div class="sudoku-controls">
+      <button class="nivel-btn facil activo" id="btn-facil"   onclick="elegirNivel('facil',this)">😊 Fácil</button>
+      <button class="nivel-btn medio"        id="btn-medio"   onclick="elegirNivel('medio',this)">🧐 Medio</button>
+      <button class="nivel-btn dificil"      id="btn-dificil" onclick="elegirNivel('dificil',this)">🔥 Difícil</button>
+    </div>
+    <div class="sudoku-info">
+      <div class="sudoku-stat">Errores: <span id="sudoku-errores">0</span> / 5</div>
+      <div class="sudoku-stat">Pistas usadas: <span id="sudoku-pistas">0</span></div>
+    </div>
+    <div class="sudoku-wrapper">
+      <div class="sudoku-board" id="sudoku-board"></div>
+      <div class="sudoku-numpad" id="sudoku-numpad"></div>
+    </div>
+    <div id="sudoku-msg" class="sudoku-msg"></div>
+    <button class="btn-secondary" onclick="nuevoSudoku()" style="margin-top:16px;">🔄 Nueva partida</button><br>
+    <button class="btn-back-light" onclick="volverMenu()">⬅ Volver al Menú</button>
+  </div>
+</div>
+
+<footer>
+  <p><strong>Ritmo Mental</strong> — Diseño accesible para mayores.</p>
+  <p style="margin-top:6px;">© 2026. Tu bienestar cognitivo es nuestra prioridad.</p>
+</footer>
+    <script src="ritmo-mental.js"></script>
+</body>
+</html>
