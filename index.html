@@ -116,9 +116,16 @@
         </div>
       </div>
     </div>
+
+    <!-- Botón instalar app -->
+    <button id="btnInstallApp" style="display:none; margin:16px auto; font-size:20px; padding:12px 20px; width:90%; border-radius:12px; background-color:#2a7cff; color:white; border:none;">
+      📲 Instalar App
+    </button>
+
+    <button class="btn-primary" onclick="irAlJuego('actividades')">¡Empezar ahora!</button>
   </section>
 
-  <section id="actividades" class="section" style="scroll-margin-top:80px;">
+  <section id="actividades" class="section" style="display:none;">
     <div class="section-header">
       <h2 class="section-title">🏋️ Gimnasio Cerebral</h2>
       <p class="subtitle">Elige el ejercicio que quieres hacer hoy:</p>
@@ -188,7 +195,7 @@
     </section>
   </div>
 
-  <section id="blog" class="section" style="scroll-margin-top:80px;">
+  <section id="blog" class="section" style="display:none;">
     <h2 class="section-title">Consejos para una Mente Joven</h2>
     <p class="subtitle">Artículos breves y útiles para tu día a día.</p>
     <div class="blog-grid">
@@ -231,7 +238,7 @@
 </div>
 
 <!-- JUEGO 1: COLORES -->
-<div id="juego-colores" class="game-section bg-dark">
+<div id="juego-colores" class="game-section bg-dark" style="display: none;">
   <div class="game-inner">
     <h2 class="section-title white">🎨 Memoria Visual</h2>
     <p style="color:rgba(255,255,255,.8);margin-bottom:10px;">Observa la secuencia y repítela haciendo clic en el mismo orden.</p>
@@ -248,7 +255,7 @@
 </div>
 
 <!-- JUEGO 2: REFRANES -->
-<div id="juego-refranes" class="game-section bg-warm">
+<div id="juego-refranes" class="game-section bg-warm" style="display: none;">
   <div class="game-inner">
     <h2 class="section-title">📚 Sabiduría Popular</h2>
     <p style="color:var(--mid);">¿Cuál es la palabra que completa el refrán?</p>
@@ -261,7 +268,7 @@
 </div>
 
 <!-- JUEGO 3: DESPENSA -->
-<div id="juego-despensa" class="game-section bg-dark">
+<div id="juego-despensa" class="game-section bg-dark" style="display: none;">
   <div class="game-inner">
     <h2 class="section-title white">🛒 La Despensa</h2>
     <p id="despensa-instr" style="color:rgba(255,255,255,.8);margin-bottom:10px;">Memoriza los productos y luego encuéntralos.</p>
@@ -274,7 +281,7 @@
 </div>
 
 <!-- JUEGO 4: INTRUSO -->
-<div id="juego-intruso" class="game-section bg-warm">
+<div id="juego-intruso" class="game-section bg-warm" style="display: none;">
   <div class="game-inner">
     <h2 class="section-title">🔎 Encuentra al Intruso</h2>
     <p style="color:var(--mid);">Uno de estos objetos no pertenece al mismo grupo. ¿Cuál es?</p>
@@ -286,7 +293,7 @@
 </div>
 
 <!-- JUEGO 5: SOPA DE LETRAS -->
-<div id="juego-sopa" class="game-section bg-cream">
+<div id="juego-sopa" class="game-section bg-cream" style="display: none;">
   <div class="game-inner" style="max-width:800px;">
     <h2 class="section-title">🔤 Sopa de Letras</h2>
     <p style="color:var(--mid);margin-bottom:20px;">Elige una temática y encuentra todas las palabras. Haz clic en cada letra en orden.</p>
@@ -300,7 +307,7 @@
 </div>
 
 <!-- JUEGO 6: SUDOKU -->
-<div id="juego-sudoku" class="game-section bg-cream">
+<div id="juego-sudoku" class="game-section bg-cream" style="display: none;">
   <div class="game-inner" style="max-width:540px;">
     <h2 class="section-title">🔢 Sudoku</h2>
     <p style="color:var(--mid);margin-bottom:20px;">Rellena cada fila, columna y cuadro 3×3 con los números del 1 al 9.</p>
@@ -350,6 +357,31 @@
  <script>
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/service-worker.js");
+}
+// Manejo del botón instalar app
+let deferredPrompt;
+const btnInstall = document.getElementById('btnInstallApp');
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  btnInstall.style.display = 'block';
+});
+btnInstall.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const choice = await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    btnInstall.style.display = 'none';
+  }
+});
+
+// Navegación tipo “pantallas” dentro de la app
+function mostrarPantalla(id) {
+  document.querySelectorAll('.section, .game-section').forEach(s => s.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
+function volverMenu() {
+  mostrarPantalla('actividades'); // o 'hero' si quieres volver al inicio
 }
 </script>
  
