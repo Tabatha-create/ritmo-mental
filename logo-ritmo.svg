@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" fill="none">
+  <!-- Círculo fondo logo -->
+  <circle cx="32" cy="32" r="30" fill="#2A7C6F"/>
+
+  <!-- Mini búho simplificado en el logo -->
+  <!-- Cuerpo -->
+  <ellipse cx="32" cy="37" rx="14" ry="16" fill="#E8703A"/>
+  <!-- Panza -->
+  <ellipse cx="32" cy="40" rx="9" ry="11" fill="#FDF6EC"/>
+  <!-- Cabeza -->
+  <ellipse cx="32" cy="22" rx="13" ry="12" fill="#E8703A"/>
+  <!-- Orejitas -->
+  <polygon points="24,13 21,6 27,12" fill="#C4551F"/>
+  <polygon points="40,13 43,6 37,12" fill="#C4551F"/>
+  <!-- Cara -->
+  <ellipse cx="32" cy="23" rx="10" ry="9" fill="#FDF6EC"/>
+  <!-- Ojos -->
+  <circle cx="27" cy="21" r="4.5" fill="white"/>
+  <circle cx="37" cy="21" r="4.5" fill="white"/>
+  <circle cx="27" cy="21" r="3" fill="#2A7C6F"/>
+  <circle cx="37" cy="21" r="3" fill="#2A7C6F"/>
+  <circle cx="27" cy="21" r="1.6" fill="#111"/>
+  <circle cx="37" cy="21" r="1.6" fill="#111"/>
+  <circle cx="28.2" cy="19.8" r="0.9" fill="white"/>
+  <circle cx="38.2" cy="19.8" r="0.9" fill="white"/>
+  <!-- Pico -->
+  <polygon points="32,26 29,29 35,29" fill="#D4A017"/>
+  <!-- Sonrojo -->
+  <ellipse cx="23" cy="26" rx="3" ry="2" fill="#E88C6A" opacity="0.5"/>
+  <ellipse cx="41" cy="26" rx="3" ry="2" fill="#E88C6A" opacity="0.5"/>
+
+  <!-- Texto "Ritmo Mental" -->
+  <text x="74" y="24" font-family="Lora, Georgia, serif" font-size="20" font-weight="600" fill="#2A7C6F" letter-spacing="-0.3">Ritmo</text>
+  <text x="74" y="48" font-family="Lora, Georgia, serif" font-size="20" font-weight="600" fill="#E8703A" letter-spacing="-0.3">Mental</text>
+
+  <!-- Línea decorativa -->
+  <line x1="68" y1="14" x2="68" y2="50" stroke="#F5EAD7" stroke-width="2" stroke-linecap="round"/>
+</svg>

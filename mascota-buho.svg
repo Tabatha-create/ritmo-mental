@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" fill="none">
+  <!-- Sombra suave -->
+  <ellipse cx="100" cy="210" rx="55" ry="10" fill="rgba(0,0,0,0.10)"/>
+
+  <!-- Cuerpo principal -->
+  <ellipse cx="100" cy="140" rx="58" ry="68" fill="#E8703A"/>
+  <!-- Panza -->
+  <ellipse cx="100" cy="155" rx="36" ry="46" fill="#FDF6EC"/>
+  <!-- Textura panza (rayas suaves) -->
+  <ellipse cx="100" cy="148" rx="22" ry="8" fill="#F5EAD7" opacity="0.7"/>
+  <ellipse cx="100" cy="162" rx="20" ry="7" fill="#F5EAD7" opacity="0.6"/>
+  <ellipse cx="100" cy="175" rx="17" ry="6" fill="#F5EAD7" opacity="0.5"/>
+
+  <!-- Alas -->
+  <ellipse cx="48" cy="148" rx="22" ry="38" fill="#C4551F" transform="rotate(-12 48 148)"/>
+  <ellipse cx="152" cy="148" rx="22" ry="38" fill="#C4551F" transform="rotate(12 152 148)"/>
+
+  <!-- Cabeza -->
+  <ellipse cx="100" cy="82" rx="52" ry="50" fill="#E8703A"/>
+
+  <!-- Orejas (plumas) -->
+  <polygon points="68,42 58,14 82,36" fill="#C4551F"/>
+  <polygon points="132,42 142,14 118,36" fill="#C4551F"/>
+  <!-- Detalle orejas -->
+  <polygon points="70,40 63,22 78,36" fill="#E8703A"/>
+  <polygon points="130,40 137,22 122,36" fill="#E8703A"/>
+
+  <!-- Cara - disco facial -->
+  <ellipse cx="100" cy="86" rx="40" ry="37" fill="#FDF6EC"/>
+
+  <!-- Ojos grandes - fondo blanco -->
+  <circle cx="82" cy="80" r="17" fill="white"/>
+  <circle cx="118" cy="80" r="17" fill="white"/>
+  <!-- Iris teal -->
+  <circle cx="82" cy="80" r="12" fill="#2A7C6F"/>
+  <circle cx="118" cy="80" r="12" fill="#2A7C6F"/>
+  <!-- Pupila -->
+  <circle cx="84" cy="79" r="6" fill="#1D1D1D"/>
+  <circle cx="120" cy="79" r="6" fill="#1D1D1D"/>
+  <!-- Brillo ojo -->
+  <circle cx="87" cy="75" r="3" fill="white"/>
+  <circle cx="123" cy="75" r="3" fill="white"/>
+  <!-- Brillo pequeño -->
+  <circle cx="89" cy="77" r="1.2" fill="white" opacity="0.8"/>
+  <circle cx="125" cy="77" r="1.2" fill="white" opacity="0.8"/>
+
+  <!-- Cejas expresivas (amigables, arqueadas) -->
+  <path d="M68 62 Q82 55 96 62" stroke="#C4551F" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <path d="M104 62 Q118 55 132 62" stroke="#C4551F" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Pico -->
+  <polygon points="100,90 91,100 109,100" fill="#D4A017"/>
+  <polygon points="100,94 91,100 109,100" fill="#B8860B"/>
+
+  <!-- Mejillas sonrojadas -->
+  <ellipse cx="68" cy="94" rx="10" ry="7" fill="#E88C6A" opacity="0.45"/>
+  <ellipse cx="132" cy="94" rx="10" ry="7" fill="#E88C6A" opacity="0.45"/>
+
+  <!-- Patas -->
+  <rect x="80" y="200" width="10" height="14" rx="4" fill="#D4A017"/>
+  <rect x="110" y="200" width="10" height="14" rx="4" fill="#D4A017"/>
+  <!-- Dedos -->
+  <rect x="72" y="210" width="8" height="6" rx="3" fill="#D4A017"/>
+  <rect x="80" y="212" width="8" height="5" rx="3" fill="#D4A017"/>
+  <rect x="88" y="213" width="7" height="5" rx="3" fill="#D4A017"/>
+  <rect x="102" y="213" width="7" height="5" rx="3" fill="#D4A017"/>
+  <rect x="110" y="212" width="8" height="5" rx="3" fill="#D4A017"/>
+  <rect x="118" y="210" width="8" height="6" rx="3" fill="#D4A017"/>
+
+  <!-- Estrellitas decorativas alrededor -->
+  <g fill="#D4A017" opacity="0.7">
+    <polygon points="22,55 24,60 29,60 25,63 27,68 22,65 17,68 19,63 15,60 20,60" transform="scale(0.7) translate(12,20)"/>
+    <polygon points="170,30 172,35 177,35 173,38 175,43 170,40 165,43 167,38 163,35 168,35" transform="scale(0.6) translate(110,20)"/>
+  </g>
+
+  <!-- Pequeños puntos decorativos en el cuerpo -->
+  <circle cx="88" cy="130" r="3" fill="#F5EAD7" opacity="0.5"/>
+  <circle cx="112" cy="125" r="2.5" fill="#F5EAD7" opacity="0.5"/>
+  <circle cx="100" cy="118" r="2" fill="#F5EAD7" opacity="0.4"/>
+</svg>

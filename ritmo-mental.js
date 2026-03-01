@@ -1,17 +1,29 @@
-// ==================== NAVEGACIÓN ====================
-// Se inicializa tras cargar el DOM para que querySelectorAll encuentre los elementos
+ // ==================== NAVEGACIÓN ====================
 let mainContent, allGames;
 document.addEventListener('DOMContentLoaded', () => {
   mainContent = document.getElementById('main-content');
   allGames    = document.querySelectorAll('.game-section');
+
+  // Botón scroll to top
+  const btnTop = document.getElementById('btn-top');
+  if(btnTop) window.addEventListener('scroll', () => {
+    btnTop.classList.toggle('visible', window.scrollY > 300);
+  });
 });
 
-function irAlJuego(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
+function irAlJuego(id){
+  if(mainContent && mainContent.classList.contains('hidden')){
+    allGames.forEach(g=>g.classList.remove('active'));
+    mainContent.classList.remove('hidden');
+  }
+  setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'}),50);
+}
 function mostrarJuego(id){
   mainContent.classList.add('hidden');
   allGames.forEach(g=>g.classList.remove('active'));
   const g=document.getElementById(id);
-  if(g){g.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+  if(g){ g.classList.add('active'); }
+  window.scrollTo({top:0,behavior:'instant'});
   if(id==='juego-colores')  resetColores();
   if(id==='juego-refranes') cargarRefran();
   if(id==='juego-despensa') resetDespensa();
@@ -22,13 +34,13 @@ function mostrarJuego(id){
 function volverMenu(){
   allGames.forEach(g=>g.classList.remove('active'));
   mainContent.classList.remove('hidden');
-  window.scrollTo({top:0,behavior:'smooth'});
-  setTimeout(()=>document.getElementById('actividades').scrollIntoView({behavior:'smooth'}),100);
+  window.scrollTo({top:0,behavior:'instant'});
+  setTimeout(()=>document.getElementById('actividades').scrollIntoView({behavior:'smooth'}),50);
 }
 function volverInicio(){
   allGames.forEach(g=>g.classList.remove('active'));
   mainContent.classList.remove('hidden');
-  window.scrollTo({top:0,behavior:'smooth'});
+  window.scrollTo({top:0,behavior:'instant'});
 }
 
 // ==================== FORMULARIO ====================
@@ -186,7 +198,7 @@ function buildSopa(palabras){
       let r0,c0;
       const maxR=SOPA_N-(d[0]>0?len:0);
       const minC=d[1]<0?len-1:0;
-      const maxC=d[1]>0?SOPA_N-len:d[1]<0?SOPA_N-1:SOPA_N;
+      const maxC=d[1]>0?SOPA_N-len:d[1]<0?SOPA_N-1:SOPA_N-1;
       if(maxR<=0||maxC<minC){continue;}
       r0=Math.floor(Math.random()*maxR);
       c0=minC+Math.floor(Math.random()*(maxC-minC+1));
@@ -238,7 +250,7 @@ const SUDOKUS={
     {g:[0,0,3,0,2,0,6,0,0, 9,0,0,3,0,5,0,0,1, 0,0,1,8,0,6,4,0,0, 0,0,8,1,0,2,9,0,0, 7,0,0,0,0,0,0,0,8, 0,0,6,7,0,8,2,0,0, 0,0,2,6,0,9,5,0,0, 8,0,0,2,0,3,0,0,9, 0,0,5,0,1,0,3,0,0],
      s:[4,8,3,9,2,1,6,5,7, 9,6,7,3,4,5,8,2,1, 2,5,1,8,7,6,4,9,3, 5,4,8,1,3,2,9,7,6, 7,2,9,5,6,4,1,3,8, 1,3,6,7,9,8,2,4,5, 3,7,2,6,8,9,5,1,4, 8,1,4,2,5,3,7,6,9, 6,9,5,4,1,7,3,8,2]},
     {g:[0,6,0,1,0,4,0,5,0, 0,0,8,3,0,5,6,0,0, 2,0,0,0,0,0,0,0,1, 8,0,0,4,0,7,0,0,6, 0,0,6,0,0,0,3,0,0, 7,0,0,9,0,1,0,0,4, 5,0,0,0,0,0,0,0,2, 0,0,7,2,0,6,9,0,0, 0,4,0,5,0,8,0,7,0],
-     s:[9,6,3,1,7,4,2,5,8, 1,7,8,3,2,5,6,4,9, 2,5,4,6,8,9,7,3,1, 8,2,9,4,3,7,1,5,6, 4,1,6,8,5,2,3,9,7, 7,3,5,9,6,1,8,2,4, 5,9,1,7,4,3,4,6,2, 3,8,7,2,1,6,9,8,5, 6,4,2,5,9,8,1,7,3]},
+     s:[9,6,3,1,7,4,2,5,8, 1,7,8,3,2,5,6,4,9, 2,5,4,6,8,9,7,3,1, 8,2,9,4,3,7,1,5,6, 4,1,6,8,5,2,3,9,7, 7,3,5,9,6,1,8,2,4, 5,9,1,7,4,3,6,8,2, 3,8,7,2,1,6,9,4,5, 6,4,2,5,9,8,3,7,1]},
   ],
   medio:[
     {g:[0,2,0,0,0,0,0,0,0, 0,0,0,6,0,0,0,0,3, 0,7,4,0,8,0,0,0,0, 0,0,0,0,0,3,0,0,2, 0,8,0,0,4,0,0,1,0, 6,0,0,5,0,0,0,0,0, 0,0,0,0,1,0,7,8,0, 5,0,0,0,0,9,0,0,0, 0,0,0,0,0,0,0,4,0],
@@ -259,7 +271,7 @@ let sdNivel='facil',sdPuzzle=null,sdSelected=null,sdErrores=0,sdPistas=0,sdUser=
 function elegirNivel(nv,btn){
   sdNivel=nv;
   document.querySelectorAll('.nivel-btn').forEach(b=>b.classList.remove('activo'));
-  btn.classList.add('activo');
+  btn.classList.add('activo',nv);
   nuevoSudoku();
 }
 function initSudoku(){

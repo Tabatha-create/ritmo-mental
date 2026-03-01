@@ -5,7 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
   allGames    = document.querySelectorAll('.game-section');
 });
 
-function irAlJuego(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
+ // Botón scroll to top
+  const btnTop = document.getElementById('btn-top');
+  window.addEventListener('scroll', () => {
+    btnTop.classList.toggle('visible', window.scrollY > 300);
+  });
+
+function irAlJuego(id){
+  if(mainContent && mainContent.classList.contains('hidden')){
+    allGames.forEach(g=>g.classList.remove('active'));
+    mainContent.classList.remove('hidden');
+  }
+  setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'}),50);
+}
 function mostrarJuego(id){
   mainContent.classList.add('hidden');
   allGames.forEach(g=>g.classList.remove('active'));

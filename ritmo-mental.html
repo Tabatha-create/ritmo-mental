@@ -11,8 +11,32 @@
 
 <header>
   <div class="logo" onclick="volverInicio()">
-    <div class="logo-brain">🧠</div>
-    <h1>Ritmo Mental</h1>
+    <div class="logo-svg">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" fill="#2A7C6F"/>
+        <ellipse cx="32" cy="38" rx="14" ry="16" fill="#E8703A"/>
+        <ellipse cx="32" cy="41" rx="9" ry="11" fill="#FDF6EC"/>
+        <ellipse cx="32" cy="22" rx="13" ry="12" fill="#E8703A"/>
+        <polygon points="24,13 21,6 27,12" fill="#C4551F"/>
+        <polygon points="40,13 43,6 37,12" fill="#C4551F"/>
+        <ellipse cx="32" cy="23" rx="10" ry="9" fill="#FDF6EC"/>
+        <circle cx="27" cy="21" r="4.5" fill="white"/>
+        <circle cx="37" cy="21" r="4.5" fill="white"/>
+        <circle cx="27" cy="21" r="3" fill="#2A7C6F"/>
+        <circle cx="37" cy="21" r="3" fill="#2A7C6F"/>
+        <circle cx="27" cy="21" r="1.6" fill="#111"/>
+        <circle cx="37" cy="21" r="1.6" fill="#111"/>
+        <circle cx="28.2" cy="19.8" r="0.9" fill="white"/>
+        <circle cx="38.2" cy="19.8" r="0.9" fill="white"/>
+        <polygon points="32,26 29,29 35,29" fill="#D4A017"/>
+        <ellipse cx="23" cy="26" rx="3" ry="2" fill="#E88C6A" opacity="0.5"/>
+        <ellipse cx="41" cy="26" rx="3" ry="2" fill="#E88C6A" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-ritmo">Ritmo</span>
+      <span class="logo-mental">Mental</span>
+    </div>
   </div>
   <nav><ul>
     <li><a href="#" onclick="volverInicio()">Inicio</a></li>
@@ -23,27 +47,133 @@
 
 <div id="main-content">
   <section class="hero">
-    <div class="hero-content">
-      <h2>Entrena tu mente,<br><span class="highlight">mejora tu día.</span></h2>
-      <p>Juegos diseñados para mantener tu memoria y atención en plena forma.</p>
-      <button class="btn-primary" onclick="irAlJuego('actividades')">¡Empezar ahora!</button>
+    <!-- Elementos decorativos de fondo -->
+    <div class="hero-deco hero-deco-1">✦</div>
+    <div class="hero-deco hero-deco-2">✦</div>
+    <div class="hero-deco hero-deco-3">◦</div>
+    <div class="hero-deco hero-deco-4">◦</div>
+
+    <div class="hero-layout">
+      <!-- Mascota -->
+      <div class="hero-mascota">
+        <div class="mascota-burbuja">¡Hola! Soy <strong>Riti</strong>, tu guía 🧠</div>
+        <div class="mascota-svg">
+          <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" class="buho-anim">
+            <ellipse cx="100" cy="210" rx="55" ry="10" fill="rgba(0,0,0,0.10)"/>
+            <ellipse cx="100" cy="140" rx="58" ry="68" fill="#E8703A"/>
+            <ellipse cx="100" cy="155" rx="36" ry="46" fill="#FDF6EC"/>
+            <ellipse cx="100" cy="148" rx="22" ry="8" fill="#F5EAD7" opacity="0.7"/>
+            <ellipse cx="100" cy="162" rx="20" ry="7" fill="#F5EAD7" opacity="0.6"/>
+            <ellipse cx="100" cy="175" rx="17" ry="6" fill="#F5EAD7" opacity="0.5"/>
+            <ellipse cx="48" cy="148" rx="22" ry="38" fill="#C4551F" transform="rotate(-12 48 148)"/>
+            <ellipse cx="152" cy="148" rx="22" ry="38" fill="#C4551F" transform="rotate(12 152 148)"/>
+            <ellipse cx="100" cy="82" rx="52" ry="50" fill="#E8703A"/>
+            <polygon points="68,42 58,14 82,36" fill="#C4551F"/>
+            <polygon points="132,42 142,14 118,36" fill="#C4551F"/>
+            <polygon points="70,40 63,22 78,36" fill="#E8703A"/>
+            <polygon points="130,40 137,22 122,36" fill="#E8703A"/>
+            <ellipse cx="100" cy="86" rx="40" ry="37" fill="#FDF6EC"/>
+            <circle cx="82" cy="80" r="17" fill="white"/>
+            <circle cx="118" cy="80" r="17" fill="white"/>
+            <circle cx="82" cy="80" r="12" fill="#2A7C6F"/>
+            <circle cx="118" cy="80" r="12" fill="#2A7C6F"/>
+            <circle cx="84" cy="79" r="6" fill="#1D1D1D"/>
+            <circle cx="120" cy="79" r="6" fill="#1D1D1D"/>
+            <circle cx="87" cy="75" r="3" fill="white"/>
+            <circle cx="123" cy="75" r="3" fill="white"/>
+            <circle cx="89" cy="77" r="1.2" fill="white" opacity="0.8"/>
+            <circle cx="125" cy="77" r="1.2" fill="white" opacity="0.8"/>
+            <path d="M68 62 Q82 55 96 62" stroke="#C4551F" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <path d="M104 62 Q118 55 132 62" stroke="#C4551F" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <polygon points="100,90 91,100 109,100" fill="#D4A017"/>
+            <polygon points="100,94 91,100 109,100" fill="#B8860B"/>
+            <ellipse cx="68" cy="94" rx="10" ry="7" fill="#E88C6A" opacity="0.45"/>
+            <ellipse cx="132" cy="94" rx="10" ry="7" fill="#E88C6A" opacity="0.45"/>
+            <rect x="80" y="200" width="10" height="14" rx="4" fill="#D4A017"/>
+            <rect x="110" y="200" width="10" height="14" rx="4" fill="#D4A017"/>
+            <rect x="72" y="210" width="8" height="6" rx="3" fill="#D4A017"/>
+            <rect x="80" y="212" width="8" height="5" rx="3" fill="#D4A017"/>
+            <rect x="88" y="213" width="7" height="5" rx="3" fill="#D4A017"/>
+            <rect x="102" y="213" width="7" height="5" rx="3" fill="#D4A017"/>
+            <rect x="110" y="212" width="8" height="5" rx="3" fill="#D4A017"/>
+            <rect x="118" y="210" width="8" height="6" rx="3" fill="#D4A017"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Texto hero -->
+      <div class="hero-content">
+        <div class="hero-badge">🌟 Tu entrenador mental de confianza</div>
+        <h2>Entrena tu mente,<br><span class="highlight">mejora tu día.</span></h2>
+        <p>Juegos diseñados con cariño para mantener tu memoria y atención en plena forma.</p>
+        <button class="btn-primary" onclick="irAlJuego('actividades')">¡Empezar ahora!</button>
+        <div class="hero-stats">
+          <div class="hero-stat"><span>🎮</span> 6 juegos</div>
+          <div class="hero-stat"><span>🧩</span> Fácil de usar</div>
+          <div class="hero-stat"><span>❤️</span> Para todos</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="actividades" class="section" style="scroll-margin-top:80px;">
-    <h2 class="section-title">🏋️ Gimnasio Cerebral</h2>
-    <p class="subtitle">Elige el ejercicio que quieres hacer hoy:</p>
+    <div class="section-header">
+      <h2 class="section-title">🏋️ Gimnasio Cerebral</h2>
+      <p class="subtitle">Elige el ejercicio que quieres hacer hoy:</p>
+    </div>
+    <!-- Riti tip -->
+    <div class="riti-tip">
+      <div class="riti-mini">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="28" fill="#2A7C6F"/>
+          <ellipse cx="30" cy="35" rx="12" ry="14" fill="#E8703A"/>
+          <ellipse cx="30" cy="38" rx="8" ry="10" fill="#FDF6EC"/>
+          <ellipse cx="30" cy="22" rx="11" ry="10" fill="#E8703A"/>
+          <polygon points="23,14 20,7 26,13" fill="#C4551F"/>
+          <polygon points="37,14 40,7 34,13" fill="#C4551F"/>
+          <ellipse cx="30" cy="22" rx="9" ry="8" fill="#FDF6EC"/>
+          <circle cx="26" cy="20" r="4" fill="white"/><circle cx="34" cy="20" r="4" fill="white"/>
+          <circle cx="26" cy="20" r="2.5" fill="#2A7C6F"/><circle cx="34" cy="20" r="2.5" fill="#2A7C6F"/>
+          <circle cx="26" cy="20" r="1.3" fill="#111"/><circle cx="34" cy="20" r="1.3" fill="#111"/>
+          <circle cx="27" cy="18.8" r="0.7" fill="white"/><circle cx="35" cy="18.8" r="0.7" fill="white"/>
+          <polygon points="30,25 27,28 33,28" fill="#D4A017"/>
+          <ellipse cx="22" cy="24" rx="2.5" ry="1.8" fill="#E88C6A" opacity="0.5"/>
+          <ellipse cx="38" cy="24" rx="2.5" ry="1.8" fill="#E88C6A" opacity="0.5"/>
+        </svg>
+      </div>
+      <p><strong>Riti dice:</strong> Intenta jugar al menos 10 minutos al día. ¡Notarás la diferencia!</p>
+    </div>
     <div class="game-grid">
-      <div class="game-card" onclick="mostrarJuego('juego-colores')"><span class="game-icon">🎨</span><h3>Memoria Visual</h3><p>Repite la secuencia de colores.</p><span class="badge">Jugar</span></div>
-      <div class="game-card" onclick="mostrarJuego('juego-refranes')"><span class="game-icon">📚</span><h3>Refranes</h3><p>Completa la sabiduría popular.</p><span class="badge">Jugar</span></div>
-      <div class="game-card" onclick="mostrarJuego('juego-despensa')"><span class="game-icon">🛒</span><h3>La Despensa</h3><p>Memoriza los productos y encuéntralos.</p><span class="badge">Jugar</span></div>
-      <div class="game-card" onclick="mostrarJuego('juego-intruso')"><span class="game-icon">🔎</span><h3>El Intruso</h3><p>Encuentra el objeto que no encaja.</p><span class="badge">Jugar</span></div>
-      <div class="game-card" onclick="mostrarJuego('juego-sopa')"><span class="game-icon">🔤</span><h3>Sopa de Letras</h3><p>5 temáticas: animales, frutas, países...</p><span class="badge">Jugar</span></div>
-      <div class="game-card" onclick="mostrarJuego('juego-sudoku')"><span class="game-icon">🔢</span><h3>Sudoku</h3><p>3 niveles: Fácil, Medio y Difícil.</p><span class="badge">Jugar</span></div>
+      <div class="game-card" onclick="mostrarJuego('juego-colores')">
+        <div class="game-card-deco">🎨</div>
+        <span class="game-icon">🎨</span><h3>Memoria Visual</h3><p>Repite la secuencia de colores.</p><span class="badge">Jugar</span>
+      </div>
+      <div class="game-card" onclick="mostrarJuego('juego-refranes')">
+        <div class="game-card-deco">📚</div>
+        <span class="game-icon">📚</span><h3>Refranes</h3><p>Completa la sabiduría popular.</p><span class="badge">Jugar</span>
+      </div>
+      <div class="game-card" onclick="mostrarJuego('juego-despensa')">
+        <div class="game-card-deco">🛒</div>
+        <span class="game-icon">🛒</span><h3>La Despensa</h3><p>Memoriza los productos y encuéntralos.</p><span class="badge">Jugar</span>
+      </div>
+      <div class="game-card" onclick="mostrarJuego('juego-intruso')">
+        <div class="game-card-deco">🔎</div>
+        <span class="game-icon">🔎</span><h3>El Intruso</h3><p>Encuentra el objeto que no encaja.</p><span class="badge">Jugar</span>
+      </div>
+      <div class="game-card" onclick="mostrarJuego('juego-sopa')">
+        <div class="game-card-deco">🔤</div>
+        <span class="game-icon">🔤</span><h3>Sopa de Letras</h3><p>5 temáticas: animales, frutas, países...</p><span class="badge">Jugar</span>
+      </div>
+      <div class="game-card" onclick="mostrarJuego('juego-sudoku')">
+        <div class="game-card-deco">🔢</div>
+        <span class="game-icon">🔢</span><h3>Sudoku</h3><p>3 niveles: Fácil, Medio y Difícil.</p><span class="badge">Jugar</span>
+      </div>
     </div>
   </section>
 
-  <div style="background:var(--warm);">
+  <div style="background:var(--warm);position:relative;overflow:hidden;">
+    <!-- Decoración ondulada superior -->
+    <div class="wave-top"></div>
     <section class="section">
       <h2 class="section-title">¿Por qué entrenar tu mente?</h2>
       <p class="subtitle">Pequeños ejercicios diarios marcan una gran diferencia.</p>
@@ -66,10 +196,28 @@
     </div>
   </section>
 
-  <div style="background:var(--teal-d);padding:70px 40px;">
+  <div style="background:var(--teal-d);padding:70px 40px;position:relative;overflow:hidden;">
+    <!-- Riti flotando en la esquina -->
+    <div class="suscripcion-buho">
+      <svg viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:120px;opacity:0.25;">
+        <ellipse cx="60" cy="84" rx="35" ry="41" fill="#E8703A"/>
+        <ellipse cx="60" cy="93" rx="22" ry="28" fill="#FDF6EC"/>
+        <ellipse cx="60" cy="49" rx="31" ry="30" fill="#E8703A"/>
+        <polygon points="41,25 35,8 49,22" fill="#C4551F"/>
+        <polygon points="79,25 85,8 71,22" fill="#C4551F"/>
+        <ellipse cx="60" cy="51" rx="24" ry="22" fill="#FDF6EC"/>
+        <circle cx="49" cy="47" r="10" fill="white"/><circle cx="71" cy="47" r="10" fill="white"/>
+        <circle cx="49" cy="47" r="7" fill="#2A7C6F"/><circle cx="71" cy="47" r="7" fill="#2A7C6F"/>
+        <circle cx="50" cy="47" r="3.5" fill="#111"/><circle cx="72" cy="47" r="3.5" fill="#111"/>
+        <circle cx="52" cy="44.5" r="1.8" fill="white"/><circle cx="74" cy="44.5" r="1.8" fill="white"/>
+        <polygon points="60,55 54,61 66,61" fill="#D4A017"/>
+        <ellipse cx="40" cy="57" rx="6" ry="4" fill="#E88C6A" opacity="0.45"/>
+        <ellipse cx="80" cy="57" rx="6" ry="4" fill="#E88C6A" opacity="0.45"/>
+      </svg>
+    </div>
     <section class="section" style="padding:0;">
-      <h2 class="section-title white">¡Recibe consejos en tu correo!</h2>
-      <p class="subtitle white">Únete a más de 500 personas que entrenan su mente cada semana.</p>
+      <h2 class="section-title white">📬 ¡Recibe consejos en tu correo!</h2>
+      <p class="subtitle white">Únete a más de 500 personas que entrenan su mente cada semana con Riti.</p>
       <div class="registro-form">
         <div class="input-group"><label>Tu nombre:</label><input type="text" id="nombre" placeholder="Ej: Carmen García"></div>
         <div class="input-group"><label>Tu correo electrónico:</label><input type="email" id="email" placeholder="nombre@correo.com"></div>
@@ -174,9 +322,28 @@
 </div>
 
 <footer>
-  <p><strong>Ritmo Mental</strong> — Diseño accesible para mayores.</p>
-  <p style="margin-top:6px;">© 2026. Tu bienestar cognitivo es nuestra prioridad.</p>
+  <div class="footer-buho">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:48px;">
+      <circle cx="30" cy="30" r="28" fill="rgba(255,255,255,0.1)"/>
+      <ellipse cx="30" cy="35" rx="12" ry="14" fill="#E8703A"/>
+      <ellipse cx="30" cy="38" rx="8" ry="10" fill="#FDF6EC" opacity="0.9"/>
+      <ellipse cx="30" cy="22" rx="11" ry="10" fill="#E8703A"/>
+      <polygon points="23,14 20,7 26,13" fill="#C4551F"/>
+      <polygon points="37,14 40,7 34,13" fill="#C4551F"/>
+      <ellipse cx="30" cy="22" rx="9" ry="8" fill="#FDF6EC" opacity="0.9"/>
+      <circle cx="26" cy="20" r="4" fill="white"/><circle cx="34" cy="20" r="4" fill="white"/>
+      <circle cx="26" cy="20" r="2.5" fill="#2A7C6F"/><circle cx="34" cy="20" r="2.5" fill="#2A7C6F"/>
+      <circle cx="26" cy="20" r="1.3" fill="#111"/><circle cx="34" cy="20" r="1.3" fill="#111"/>
+      <circle cx="27" cy="18.8" r="0.7" fill="white"/><circle cx="35" cy="18.8" r="0.7" fill="white"/>
+      <polygon points="30,25 27,28 33,28" fill="#D4A017"/>
+    </svg>
+  </div>
+  <p><strong>Ritmo Mental</strong> — Con <span style="color:#E8703A;">♥</span> para cuidar tu mente.</p>
+  <p style="margin-top:6px;font-size:0.9rem;">© 2026. Tu bienestar cognitivo es nuestra prioridad.</p>
 </footer>
+
+ <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba">▲</button>
     <script src="ritmo-mental.js"></script>
+    
 </body>
 </html>
