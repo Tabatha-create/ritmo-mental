@@ -361,28 +361,24 @@ if ("serviceWorker" in navigator) {
 // Manejo del botón instalar app
 let deferredPrompt;
 const btnInstall = document.getElementById('btnInstallApp');
+
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  btnInstall.style.display = 'block';
-});
-btnInstall.addEventListener('click', async () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    const choice = await deferredPrompt.userChoice;
-    deferredPrompt = null;
-    btnInstall.style.display = 'none';
-  }
+  if (btnInstall) btnInstall.style.display = 'block';
 });
 
-// Navegación tipo “pantallas” dentro de la app
-function mostrarPantalla(id) {
-  document.querySelectorAll('.section, .game-section').forEach(s => s.style.display = 'none');
-  document.getElementById(id).style.display = 'block';
+if (btnInstall) {
+  btnInstall.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      btnInstall.style.display = 'none';
+    }
+  });
 }
-function volverMenu() {
-  mostrarPantalla('actividades'); // o 'hero' si quieres volver al inicio
-}
+
 </script>
  
 </body>
