@@ -117,12 +117,6 @@
       </div>
     </div>
 
-    <!-- Botón instalar app -->
-    <button id="btnInstallApp" style="display:none; margin:16px auto; font-size:20px; padding:12px 20px; width:90%; border-radius:12px; background-color:#2a7cff; color:white; border:none;">
-      📲 Instalar App
-    </button>
-
-    <button class="btn-primary" onclick="irAlJuego('actividades')">¡Empezar ahora!</button>
   </section>
 
   <section id="actividades" class="section" style="display:none;">
@@ -350,36 +344,8 @@
   <p><strong>Ritmo Mental</strong> — Con <span style="color:#E8703A;">♥</span> para cuidar tu mente.</p>
   <p style="margin-top:6px;font-size:0.9rem;">© 2026. Tu bienestar cognitivo es nuestra prioridad.</p>
 </footer>
-
- <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba">▲</button>
   
- <script src="ritmo-mental.js"></script>
- <script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/service-worker.js");
-}
-// Manejo del botón instalar app
-let deferredPrompt;
-const btnInstall = document.getElementById('btnInstallApp');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  if (btnInstall) btnInstall.style.display = 'block';
-});
-
-if (btnInstall) {
-  btnInstall.addEventListener('click', async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-      btnInstall.style.display = 'none';
-    }
-  });
-}
-
-</script>
+ <script src="ritmo-mental.js" defer></script>
  
 </body>
 </html>
