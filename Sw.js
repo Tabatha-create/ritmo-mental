@@ -1,20 +1,19 @@
- // ============================================================
+// ============================================================
 //  Ritmo Mental — Service Worker
 //  Estrategia: Cache-first para assets, Network-first para HTML
 // ============================================================
 
-const CACHE_NAME = 'ritmo-mental-v1';
+const CACHE_NAME = 'ritmo-mental-v2';
 
 // Archivos que se guardan en caché al instalar la app
 const PRECACHE_ASSETS = [
   '/',
-  '/ritmo-mental.html',
+  '/index.html',
   '/ritmo-mental.css',
   '/ritmo-mental.js',
   '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
-  // Fuentes de Google (se cachean en primera visita)
+  'icons/icon-192.png',
+  'icons/icon-512.png',
   'https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Lora:wght@400;600&display=swap'
 ];
 
@@ -67,7 +66,7 @@ async function networkFirst(request) {
     return networkResponse;
   } catch {
     const cached = await caches.match(request);
-    return cached || caches.match('/ritmo-mental.html');
+    return cached || caches.match('/index.html');
   }
 }
 
