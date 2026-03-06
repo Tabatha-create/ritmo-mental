@@ -6,6 +6,17 @@
   <title>Ritmo Mental | Entrenamiento Cognitivo</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Lora:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="ritmo-mental.css">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2A7C6F">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Ritmo Mental">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png">
 </head>
 <body>
 
@@ -342,5 +353,16 @@
   <p style="margin-top:6px;font-size:0.9rem;">© 2026. Tu bienestar cognitivo es nuestra prioridad.</p>
 </footer>
     <script src="ritmo-mental.js"></script>
+
+   <!-- Registro del Service Worker (PWA) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('✅ Service Worker registrado:', reg.scope))
+          .catch(err => console.warn('❌ SW error:', err));
+      });
+    }
+  </script> 
 </body>
 </html>
