@@ -32,6 +32,43 @@
   <div class="riti-text">Hola, soy <b>Riti</b>. ¿Entrenamos un poco hoy?</div>
 </div>
 
+<!-- Pantalla de inicio APP (solo visible en modo PWA/app) -->
+<div id="app-home" style="display:none; padding: 0 16px 40px;">
+  <p class="app-home-subtitle">Elige el juego de hoy:</p>
+  <div class="app-game-grid">
+    <div class="app-game-card" onclick="mostrarJuego('juego-colores')">
+      <div class="app-game-icon">🎨</div>
+      <div class="app-game-name">Memoria Visual</div>
+      <div class="app-game-desc">Repite la secuencia de colores</div>
+    </div>
+    <div class="app-game-card" onclick="mostrarJuego('juego-refranes')">
+      <div class="app-game-icon">📚</div>
+      <div class="app-game-name">Refranes</div>
+      <div class="app-game-desc">Completa la sabiduría popular</div>
+    </div>
+    <div class="app-game-card" onclick="mostrarJuego('juego-despensa')">
+      <div class="app-game-icon">🛒</div>
+      <div class="app-game-name">La Despensa</div>
+      <div class="app-game-desc">Memoriza y encuentra productos</div>
+    </div>
+    <div class="app-game-card" onclick="mostrarJuego('juego-intruso')">
+      <div class="app-game-icon">🔎</div>
+      <div class="app-game-name">El Intruso</div>
+      <div class="app-game-desc">Encuentra el que no encaja</div>
+    </div>
+    <div class="app-game-card" onclick="mostrarJuego('juego-sopa')">
+      <div class="app-game-icon">🔤</div>
+      <div class="app-game-name">Sopa de Letras</div>
+      <div class="app-game-desc">5 temáticas distintas</div>
+    </div>
+    <div class="app-game-card" onclick="mostrarJuego('juego-sudoku')">
+      <div class="app-game-icon">🔢</div>
+      <div class="app-game-name">Sudoku</div>
+      <div class="app-game-desc">Fácil, Medio y Difícil</div>
+    </div>
+  </div>
+</div>
+
 <header>
   <div class="logo" onclick="volverInicio()">
     <div class="logo-svg">
@@ -366,26 +403,77 @@
 </footer>
     <script src="ritmo-mental.js"></script>
 
-  <!-- Detección modo app (PWA instalada) -->
+  <!-- Detección y control modo app (PWA instalada) -->
   <script>
-    (function() {
-      // Detecta si se abrió como PWA instalada (standalone) o desde parámetro ?app=1
-      var isApp = window.matchMedia('(display-mode: standalone)').matches
+    var APP_MODE = window.matchMedia('(display-mode: standalone)').matches
                || window.navigator.standalone === true
                || new URLSearchParams(window.location.search).get('app') === '1';
 
-      if (isApp) {
-        document.body.classList.add('app-mode');
-        // Mostrar topbar y mensaje de Riti
-        document.getElementById('app-topbar').style.display = 'flex';
-        document.getElementById('riti-app-tip').style.display = 'flex';
-        // Ir directamente a la sección de juegos
-        setTimeout(function() {
-          var actividades = document.getElementById('actividades');
-          if (actividades) actividades.scrollIntoView({ behavior: 'instant' });
-        }, 50);
+    if (APP_MODE) {
+      document.body.classList.add('app-mode');
+
+      // IDs de secciones web que NO queremos en la app
+      var SOLO_WEB = [
+        'main-content'  // todo: hero + beneficios + blog + suscripción
+      ];
+
+      // Ocultar secciones web al cargar
+      document.addEventListener('DOMContentLoaded', function() {
+        SOLO_WEB.forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });
+
+        // Ocultar footer
+        var footer = document.querySelector('footer');
+        if (footer) footer.style.display = 'none';
+
+        // Mostrar pantalla de inicio de la app
+        mostrarPantallaApp();
+      });
+    }
+
+    // Muestra la pantalla principal de la app: topbar + Riti + grid de juegos
+    function mostrarPantallaApp() {
+      if (!APP_MODE) return;
+
+      // Ocultar todos los juegos activos
+      document.querySelectorAll('.game-section').forEach(function(s) {
+        s.style.display = 'none';
+      });
+
+      // Mostrar topbar y mensaje de Riti
+      document.getElementById('app-topbar').style.display = 'flex';
+      document.getElementById('riti-app-tip').style.display = 'flex';
+
+      // Mostrar el panel de juegos de la app
+      document.getElementById('app-home').style.display = 'block';
+
+      // Scroll arriba
+      window.scrollTo(0, 0);
+    }
+
+    // Sobreescribimos volverMenu para que en app vuelva a la pantalla app
+    var _volverMenuOriginal = window.volverMenu;
+    window.volverMenu = function() {
+      if (APP_MODE) {
+        mostrarPantallaApp();
+      } else if (_volverMenuOriginal) {
+        _volverMenuOriginal();
       }
-    })();
+    };
+
+    // Sobreescribimos mostrarJuego para que en app oculte el home
+    var _mostrarJuegoOriginal = window.mostrarJuego;
+    window.mostrarJuego = function(id) {
+      if (APP_MODE) {
+        document.getElementById('app-home').style.display = 'none';
+        document.getElementById('riti-app-tip').style.display = 'none';
+      }
+      if (_mostrarJuegoOriginal) {
+        _mostrarJuegoOriginal(id);
+      }
+    };
   </script>
 
    <!-- Registro del Service Worker (PWA) -->
