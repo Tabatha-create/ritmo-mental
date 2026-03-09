@@ -6,7 +6,6 @@
   <title>Ritmo Mental | Entrenamiento Cognitivo</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Lora:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="ritmo-mental.css">
-  <link rel="stylesheet" href="app.css">
 
   <!-- PWA -->
   <link rel="manifest" href="/manifest.json">
@@ -20,17 +19,6 @@
   <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png">
 </head>
 <body>
-
-<!-- Barra superior APP (solo visible en modo PWA/app) -->
-<div class="app-topbar" id="app-topbar" style="display:none;">
-  <div class="app-logo">🦉 Ritmo Mental</div>
-</div>
-
-<!-- Mensaje de Riti APP (solo visible en modo PWA/app) -->
-<div class="riti-app-tip" id="riti-app-tip" style="display:none;">
-  <div class="riti-avatar">🦉</div>
-  <div class="riti-text">Hola, soy <b>Riti</b>. ¿Entrenamos un poco hoy?</div>
-</div>
 
 <header>
   <div class="logo" onclick="volverInicio()">
@@ -365,28 +353,6 @@
   <p style="margin-top:6px;font-size:0.9rem;">© 2026. Tu bienestar cognitivo es nuestra prioridad.</p>
 </footer>
     <script src="ritmo-mental.js"></script>
-
-  <!-- Detección modo app (PWA instalada) -->
-  <script>
-    (function() {
-      // Detecta si se abrió como PWA instalada (standalone) o desde parámetro ?app=1
-      var isApp = window.matchMedia('(display-mode: standalone)').matches
-               || window.navigator.standalone === true
-               || new URLSearchParams(window.location.search).get('app') === '1';
-
-      if (isApp) {
-        document.body.classList.add('app-mode');
-        // Mostrar topbar y mensaje de Riti
-        document.getElementById('app-topbar').style.display = 'flex';
-        document.getElementById('riti-app-tip').style.display = 'flex';
-        // Ir directamente a la sección de juegos
-        setTimeout(function() {
-          var actividades = document.getElementById('actividades');
-          if (actividades) actividades.scrollIntoView({ behavior: 'instant' });
-        }, 50);
-      }
-    })();
-  </script>
 
    <!-- Registro del Service Worker (PWA) -->
   <script>

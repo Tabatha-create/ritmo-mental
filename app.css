@@ -1,116 +1,86 @@
-/* modo app */
+ /* ── MODO APP (se activa cuando body tiene clase app-mode) ── */
 
-body.app-mode{
-margin:0;
-background:#f4f6fb;
-font-family:Nunito, sans-serif;
+/* Barra superior */
+.app-topbar {
+  position: sticky;
+  top: 0;
+  background: #2A7C6F;
+  color: white;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* barra superior */
-
-.app-topbar{
-position:sticky;
-top:0;
-background:#2A7C6F;
-color:white;
-padding:14px 18px;
-display:flex;
-align-items:center;
-font-weight:700;
-font-size:18px;
-z-index:1000;
+.app-logo {
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 0.5px;
 }
 
-/* riti consejo */
-
-.riti-app-tip{
-
-background:white;
-
-border-radius:18px;
-
-padding:14px;
-
-display:flex;
-
-gap:12px;
-
-align-items:center;
-
-box-shadow:0 6px 14px rgba(0,0,0,0.1);
-
-margin:15px;
-
+/* Riti consejo */
+.riti-app-tip {
+  background: white;
+  border-radius: 18px;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+  margin: 15px;
 }
 
-.riti-avatar{
-
-font-size:32px;
-
+.riti-avatar {
+  font-size: 32px;
+  flex-shrink: 0;
 }
 
-.riti-text{
-
-font-size:14px;
-
-line-height:1.4;
-
+.riti-text {
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: 'Nunito', sans-serif;
 }
 
-/* iframe de la app */
-
-.app-frame{
-
-border:none;
-
-width:100%;
-
-height:calc(100vh - 120px);
-
+/* En modo app: ocultar header de navegación web normal */
+body.app-mode header {
+  display: none;
 }
 
-/* eliminar efectos de navegador */
-
-a,button{
-
--webkit-tap-highlight-color:transparent;
-
+/* En modo app: ocultar la sección hero */
+body.app-mode .hero {
+  display: none;
 }
 
-/* tarjetas más grandes para app */
-
-.game-grid{
-
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-
-gap:22px;
-
+/* En modo app: mostrar los elementos de app */
+body.app-mode #app-topbar,
+body.app-mode #riti-app-tip {
+  display: flex !important;
 }
 
-/* tarjetas estilo app */
-
-.game-card{
-
-border-radius:20px;
-
-padding:26px 18px;
-
-box-shadow:0 8px 18px rgba(0,0,0,0.15);
-
-transition:transform .15s ease;
-
+/* En modo app: tarjetas más grandes y táctiles */
+body.app-mode .game-grid {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 22px;
 }
 
-.game-card:active{
-
-transform:scale(0.96);
-
+body.app-mode .game-card {
+  border-radius: 20px;
+  padding: 26px 18px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  transition: transform .15s ease;
 }
 
-/* iconos más grandes */
+body.app-mode .game-card:active {
+  transform: scale(0.96);
+}
 
-.game-icon{
+body.app-mode .game-icon {
+  font-size: 42px;
+}
 
-font-size:42px;
-
+/* Eliminar efectos tap en móvil */
+a, button {
+  -webkit-tap-highlight-color: transparent;
 }
