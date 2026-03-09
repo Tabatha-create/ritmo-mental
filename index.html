@@ -26,14 +26,46 @@
   <div class="app-logo">🦉 Ritmo Mental</div>
 </div>
 
-<!-- Mensaje de Riti APP (solo visible en modo PWA/app) -->
-<div class="riti-app-tip" id="riti-app-tip" style="display:none;">
-  <div class="riti-avatar">🦉</div>
-  <div class="riti-text">Hola, soy <b>Riti</b>. ¿Entrenamos un poco hoy?</div>
-</div>
-
 <!-- Pantalla de inicio APP (solo visible en modo PWA/app) -->
 <div id="app-home" style="display:none; padding: 0 16px 40px;">
+
+  <!-- Tarjeta grande de Riti -->
+  <div class="riti-card" id="riti-card">
+    <div class="riti-card-buho">
+      <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" class="buho-anim">
+        <ellipse cx="100" cy="210" rx="55" ry="10" fill="rgba(0,0,0,0.10)"/>
+        <ellipse cx="100" cy="140" rx="58" ry="68" fill="#E8703A"/>
+        <ellipse cx="100" cy="155" rx="36" ry="46" fill="#FDF6EC"/>
+        <ellipse cx="100" cy="148" rx="22" ry="8" fill="#F5EAD7" opacity="0.7"/>
+        <ellipse cx="100" cy="162" rx="20" ry="7" fill="#F5EAD7" opacity="0.6"/>
+        <ellipse cx="100" cy="175" rx="17" ry="6" fill="#F5EAD7" opacity="0.5"/>
+        <ellipse cx="48" cy="148" rx="22" ry="38" fill="#C4551F" transform="rotate(-12 48 148)"/>
+        <ellipse cx="152" cy="148" rx="22" ry="38" fill="#C4551F" transform="rotate(12 152 148)"/>
+        <ellipse cx="100" cy="82" rx="52" ry="50" fill="#E8703A"/>
+        <polygon points="68,42 58,14 82,36" fill="#C4551F"/>
+        <polygon points="132,42 142,14 118,36" fill="#C4551F"/>
+        <ellipse cx="100" cy="86" rx="40" ry="37" fill="#FDF6EC"/>
+        <circle cx="82" cy="80" r="17" fill="white"/>
+        <circle cx="118" cy="80" r="17" fill="white"/>
+        <circle cx="82" cy="80" r="12" fill="#2A7C6F"/>
+        <circle cx="118" cy="80" r="12" fill="#2A7C6F"/>
+        <circle cx="84" cy="79" r="6" fill="#1D1D1D"/>
+        <circle cx="120" cy="79" r="6" fill="#1D1D1D"/>
+        <circle cx="87" cy="75" r="3" fill="white"/>
+        <circle cx="123" cy="75" r="3" fill="white"/>
+        <polygon points="100,90 91,100 109,100" fill="#D4A017"/>
+        <ellipse cx="68" cy="94" rx="10" ry="7" fill="#E88C6A" opacity="0.45"/>
+        <ellipse cx="132" cy="94" rx="10" ry="7" fill="#E88C6A" opacity="0.45"/>
+        <rect x="80" y="200" width="10" height="14" rx="4" fill="#D4A017"/>
+        <rect x="110" y="200" width="10" height="14" rx="4" fill="#D4A017"/>
+      </svg>
+    </div>
+    <div class="riti-card-texto">
+      <div class="riti-card-saludo" id="riti-saludo">¡Buenos días! 🌅</div>
+      <div class="riti-card-mensaje" id="riti-mensaje">Hoy es un buen día para ejercitar tu mente. ¡Elige un juego y empezamos!</div>
+    </div>
+  </div>
+
   <p class="app-home-subtitle">Elige el juego de hoy:</p>
   <div class="app-game-grid">
     <div class="app-game-card" onclick="appAbrirJuego('juego-colores')">
@@ -66,6 +98,15 @@
       <div class="app-game-name">Sudoku</div>
       <div class="app-game-desc">Fácil, Medio y Difícil</div>
     </div>
+  </div>
+</div>
+
+<!-- Overlay de celebración de Riti -->
+<div id="riti-celebracion" style="display:none;">
+  <div class="celeb-contenido">
+    <div class="celeb-buho" id="celeb-buho">🦉</div>
+    <div class="celeb-mensaje" id="celeb-mensaje">¡Genial! ¡Lo has conseguido!</div>
+    <div class="celeb-emojis" id="celeb-emojis"></div>
   </div>
 </div>
 
@@ -413,43 +454,187 @@
       document.body.classList.add('app-mode');
     }
 
+    // Mensajes de Riti según hora del día
+    var MENSAJES_RITI = {
+      manana: [
+        "¡Buenos días! 🌅 Empezar el día entrenando la mente es un gran hábito. ¡Vamos allá!",
+        "¡Hola! ☀️ Tu cerebro ya está despierto. ¿Le damos un pequeño empujón con un juego?",
+        "¡Buenos días! 🌸 Unos minutitos de ejercicio mental y el día empieza de maravilla.",
+      ],
+      tarde: [
+        "¡Buenas tardes! 🌤️ Un descanso mental activo es justo lo que necesitas ahora.",
+        "¡Hola de nuevo! 🎯 La tarde es perfecta para un reto mental. ¿Cuál eliges hoy?",
+        "¡Buenas tardes! 🧩 Tu mente está a pleno rendimiento. ¡Aprovéchalo!",
+      ],
+      noche: [
+        "¡Buenas noches! 🌙 Un juego relajante antes de descansar va muy bien.",
+        "¡Hola! ⭐ Terminar el día con un ejercicio mental es un regalo para tu cerebro.",
+        "¡Buenas noches! 🦉 Los búhos somos nocturnos... ¿y tú? ¡Un juego más!",
+      ]
+    };
+
+    function getRitiMensaje() {
+      var h = new Date().getHours();
+      var franja = h < 13 ? 'manana' : h < 21 ? 'tarde' : 'noche';
+      var lista = MENSAJES_RITI[franja];
+      return lista[Math.floor(Math.random() * lista.length)];
+    }
+
+    function getRitiSaludo() {
+      var h = new Date().getHours();
+      if (h < 13) return '¡Buenos días! ☀️';
+      if (h < 21) return '¡Buenas tardes! 🌤️';
+      return '¡Buenas noches! 🌙';
+    }
+
     // Al cargar: ocultar secciones web, mostrar pantalla app
     document.addEventListener('DOMContentLoaded', function() {
       if (!APP_MODE) return;
 
-      // main-content oculto (hero, beneficios, blog, suscripción)
       var mc = document.getElementById('main-content');
       if (mc) mc.style.display = 'none';
-
-      // footer oculto
       var footer = document.querySelector('footer');
       if (footer) footer.style.display = 'none';
 
-      // Mostrar elementos app
       document.getElementById('app-topbar').style.display = 'flex';
-      document.getElementById('riti-app-tip').style.display = 'flex';
       document.getElementById('app-home').style.display = 'block';
+
+      // Poner mensaje del día en la tarjeta de Riti
+      document.getElementById('riti-saludo').textContent = getRitiSaludo();
+      document.getElementById('riti-mensaje').textContent = getRitiMensaje();
     });
 
-    // Abrir juego desde la app: llamamos a mostrarJuego original (que usa .active)
-    // y ocultamos el home de la app
+    // Abrir juego
     function appAbrirJuego(id) {
       document.getElementById('app-home').style.display = 'none';
-      document.getElementById('riti-app-tip').style.display = 'none';
-      mostrarJuego(id); // función original de ritmo-mental.js
+      mostrarJuego(id);
     }
 
-    // Volver al home de la app desde un juego
-    // volverMenu() original: quita .active de juegos y hace show de main-content
-    // Nosotros lo llamamos y luego volvemos a ocultar main-content y mostrar app-home
+    // Volver al home
     function appVolverHome() {
-      volverMenu(); // limpia estado del juego y quita .active
+      volverMenu();
       var mc = document.getElementById('main-content');
-      if (mc) mc.style.display = 'none'; // volver a ocultar lo que volverMenu mostró
+      if (mc) mc.style.display = 'none';
       document.getElementById('app-home').style.display = 'block';
-      document.getElementById('riti-app-tip').style.display = 'flex';
+
+      // Mensaje nuevo cada vez que vuelve al home
+      document.getElementById('riti-saludo').textContent = getRitiSaludo();
+      document.getElementById('riti-mensaje').textContent = getRitiMensaje();
       window.scrollTo(0, 0);
     }
+
+    // ── CELEBRACIÓN DE RITI ──────────────────────────────
+    var MENSAJES_CELEBRACION = [
+      "¡Genial! 🎉 ¡Lo has conseguido!",
+      "¡Estupendo! 🌟 ¡Qué memoria tan buena!",
+      "¡Bravo! 👏 ¡Eres un crack!",
+      "¡Fantástico! 🏆 ¡Sigue así!",
+      "¡Increíble! 🎊 ¡Tu mente está en forma!",
+      "¡Perfecto! ✨ ¡Yo sabía que podías!",
+    ];
+
+    var EMOJIS_FIESTA = ['🎉','🌟','👏','🎊','✨','🏆','🎈','💪','🦉','❤️'];
+
+    var _celebTimeout = null;
+
+    function ritiCelebrar(mensaje) {
+      if (!APP_MODE) return;
+
+      var overlay = document.getElementById('riti-celebracion');
+      var msgEl   = document.getElementById('celeb-mensaje');
+      var emojisEl = document.getElementById('celeb-emojis');
+      var buhoEl  = document.getElementById('celeb-buho');
+
+      // Mensaje personalizado o aleatorio
+      msgEl.textContent = mensaje || MENSAJES_CELEBRACION[Math.floor(Math.random() * MENSAJES_CELEBRACION.length)];
+
+      // Generar emojis flotantes
+      emojisEl.innerHTML = '';
+      var pool = EMOJIS_FIESTA.slice().sort(() => Math.random() - .5).slice(0, 8);
+      pool.forEach(function(e, i) {
+        var span = document.createElement('span');
+        span.textContent = e;
+        span.className = 'celeb-emoji';
+        span.style.setProperty('--i', i);
+        span.style.setProperty('--x', (Math.random() * 80 + 10) + '%');
+        span.style.setProperty('--delay', (Math.random() * 0.4) + 's');
+        emojisEl.appendChild(span);
+      });
+
+      // Mostrar overlay con animación
+      overlay.style.display = 'flex';
+      overlay.classList.remove('celeb-salir');
+      overlay.classList.add('celeb-entrar');
+      buhoEl.classList.add('celeb-buho-bounce');
+
+      // Ocultar tras 2.5 segundos
+      if (_celebTimeout) clearTimeout(_celebTimeout);
+      _celebTimeout = setTimeout(function() {
+        overlay.classList.remove('celeb-entrar');
+        overlay.classList.add('celeb-salir');
+        setTimeout(function() {
+          overlay.style.display = 'none';
+          overlay.classList.remove('celeb-salir');
+          buhoEl.classList.remove('celeb-buho-bounce');
+        }, 400);
+      }, 2500);
+    }
+
+    // Parchear los momentos de victoria de ritmo-mental.js
+    // Lo hacemos después de que cargue el DOM para no interferir
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!APP_MODE) return;
+
+      // Colores: nivel superado (ampliarSeq muestra el siguiente nivel tras éxito)
+      var _ampliarSeqOrig = window.ampliarSeq;
+      var _colorPasoAntes = 0;
+      window.clicColor = (function(original) {
+        return function(box) {
+          // Guardamos la longitud antes de llamar al original
+          var lenAntes = colorSeq ? colorSeq.length : 0;
+          original(box);
+          // Si el mensaje de feedback contiene "superado" → hubo victoria
+          setTimeout(function() {
+            var msg = document.getElementById('colores-msg');
+            if (msg && msg.textContent.includes('superado')) {
+              ritiCelebrar('¡Nivel ' + lenAntes + ' superado! 🎨');
+            }
+          }, 50);
+        };
+      })(window.clicColor);
+
+      // Refranes: respuesta correcta
+      window.elegirRefran = (function(original) {
+        return function(btn, elegida, correcta) {
+          original(btn, elegida, correcta);
+          if (elegida === correcta) {
+            setTimeout(function() { ritiCelebrar('¡Refrán acertado! 📚'); }, 200);
+          }
+        };
+      })(window.elegirRefran);
+
+      // Intruso: respuesta correcta
+      window.clicIntruso = (function(original) {
+        return function(el, esIntruso) {
+          original(el, esIntruso);
+          if (esIntruso) {
+            setTimeout(function() { ritiCelebrar('¡Intruso encontrado! 🔎'); }, 200);
+          }
+        };
+      })(window.clicIntruso);
+
+      // Sudoku: completado (vigilamos el mensaje de win)
+      var _inputNumOrig = window.inputNum;
+      window.inputNum = function(num) {
+        _inputNumOrig(num);
+        setTimeout(function() {
+          var msg = document.getElementById('sudoku-msg');
+          if (msg && (msg.textContent.includes('Enhorabuena') || msg.textContent.includes('Completado'))) {
+            ritiCelebrar('¡Sudoku completado! 🔢');
+          }
+        }, 50);
+      };
+    });
   </script>
 
    <!-- Registro del Service Worker (PWA) -->
