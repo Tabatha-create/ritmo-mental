@@ -1,0 +1,86 @@
+ /* ── MODO APP (se activa cuando body tiene clase app-mode) ── */
+
+/* Barra superior */
+.app-topbar {
+  position: sticky;
+  top: 0;
+  background: #2A7C6F;
+  color: white;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.app-logo {
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Riti consejo */
+.riti-app-tip {
+  background: white;
+  border-radius: 18px;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+  margin: 15px;
+}
+
+.riti-avatar {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.riti-text {
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* En modo app: ocultar header de navegación web normal */
+body.app-mode header {
+  display: none;
+}
+
+/* En modo app: ocultar la sección hero */
+body.app-mode .hero {
+  display: none;
+}
+
+/* En modo app: mostrar los elementos de app */
+body.app-mode #app-topbar,
+body.app-mode #riti-app-tip {
+  display: flex !important;
+}
+
+/* En modo app: tarjetas más grandes y táctiles */
+body.app-mode .game-grid {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 22px;
+}
+
+body.app-mode .game-card {
+  border-radius: 20px;
+  padding: 26px 18px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  transition: transform .15s ease;
+}
+
+body.app-mode .game-card:active {
+  transform: scale(0.96);
+}
+
+body.app-mode .game-icon {
+  font-size: 42px;
+}
+
+/* Eliminar efectos tap en móvil */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
