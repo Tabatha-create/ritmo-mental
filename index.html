@@ -540,6 +540,58 @@
     function ritiCelebrar(mensaje) {
       if (!APP_MODE) return;
 
+      // ── Sonido de celebración con Web Audio API ──
+      try {
+        var ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playTono(freq, start, dur, vol) {
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.frequency.value = freq;
+          osc.type = 'sine';
+          gain.gain.setValueAtTime(0, ctx.currentTime + start);
+          gain.gain.linearRampToValueAtTime(vol, ctx.currentTime + start + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + start + dur);
+          osc.start(ctx.currentTime + start);
+          osc.stop(ctx.currentTime + start + dur);
+        }
+
+        function playAplauso(start) {
+          var bufSize = ctx.sampleRate * 0.12;
+          var buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+          var data = buf.getChannelData(0);
+          for (var i = 0; i < bufSize; i++) {
+            data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufSize, 1.5);
+          }
+          var src = ctx.createBufferSource();
+          var filter = ctx.createBiquadFilter();
+          filter.type = 'bandpass';
+          filter.frequency.value = 1200;
+          filter.Q.value = 0.8;
+          var gain = ctx.createGain();
+          gain.gain.value = 0.35;
+          src.buffer = buf;
+          src.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+          src.start(ctx.currentTime + start);
+        }
+
+        // Melodía alegre: Do-Mi-Sol-Do
+        playTono(523, 0.0,  0.18, 0.3);
+        playTono(659, 0.18, 0.18, 0.3);
+        playTono(784, 0.36, 0.18, 0.3);
+        playTono(1047,0.54, 0.30, 0.35);
+
+        // Aplausos en 3 oleadas
+        for (var i = 0; i < 5; i++) playAplauso(0.05 + i * 0.10);
+        for (var j = 0; j < 5; j++) playAplauso(0.70 + j * 0.10);
+        for (var k = 0; k < 4; k++) playAplauso(1.35 + k * 0.12);
+
+      } catch(e) { /* silencio si el navegador no lo soporta */ }
+
       var overlay = document.getElementById('riti-celebracion');
       var msgEl   = document.getElementById('celeb-mensaje');
       var emojisEl = document.getElementById('celeb-emojis');
