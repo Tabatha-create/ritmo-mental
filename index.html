@@ -36,32 +36,32 @@
 <div id="app-home" style="display:none; padding: 0 16px 40px;">
   <p class="app-home-subtitle">Elige el juego de hoy:</p>
   <div class="app-game-grid">
-    <div class="app-game-card" onclick="mostrarJuego('juego-colores')">
+    <div class="app-game-card" onclick="appAbrirJuego('juego-colores')">
       <div class="app-game-icon">🎨</div>
       <div class="app-game-name">Memoria Visual</div>
       <div class="app-game-desc">Repite la secuencia de colores</div>
     </div>
-    <div class="app-game-card" onclick="mostrarJuego('juego-refranes')">
+    <div class="app-game-card" onclick="appAbrirJuego('juego-refranes')">
       <div class="app-game-icon">📚</div>
       <div class="app-game-name">Refranes</div>
       <div class="app-game-desc">Completa la sabiduría popular</div>
     </div>
-    <div class="app-game-card" onclick="mostrarJuego('juego-despensa')">
+    <div class="app-game-card" onclick="appAbrirJuego('juego-despensa')">
       <div class="app-game-icon">🛒</div>
       <div class="app-game-name">La Despensa</div>
       <div class="app-game-desc">Memoriza y encuentra productos</div>
     </div>
-    <div class="app-game-card" onclick="mostrarJuego('juego-intruso')">
+    <div class="app-game-card" onclick="appAbrirJuego('juego-intruso')">
       <div class="app-game-icon">🔎</div>
       <div class="app-game-name">El Intruso</div>
       <div class="app-game-desc">Encuentra el que no encaja</div>
     </div>
-    <div class="app-game-card" onclick="mostrarJuego('juego-sopa')">
+    <div class="app-game-card" onclick="appAbrirJuego('juego-sopa')">
       <div class="app-game-icon">🔤</div>
       <div class="app-game-name">Sopa de Letras</div>
       <div class="app-game-desc">5 temáticas distintas</div>
     </div>
-    <div class="app-game-card" onclick="mostrarJuego('juego-sudoku')">
+    <div class="app-game-card" onclick="appAbrirJuego('juego-sudoku')">
       <div class="app-game-icon">🔢</div>
       <div class="app-game-name">Sudoku</div>
       <div class="app-game-desc">Fácil, Medio y Difícil</div>
@@ -301,7 +301,7 @@
     </div>
     <div id="colores-msg" class="feedback-msg">Pulsa el botón para empezar</div>
     <button id="start-colores" class="btn-secondary" onclick="iniciarColores()">Iniciar Secuencia</button><br>
-    <button class="btn-back" onclick="volverMenu()">⬅ Volver al Menú</button>
+    <button class="btn-back" onclick="APP_MODE ? appVolverHome() : volverMenu()">⬅ Volver al Menú</button>
   </div>
 </div>
 
@@ -314,7 +314,7 @@
     <div class="opciones-grid" id="opciones-refranes"></div>
     <div id="refran-feedback" class="feedback-msg light"></div>
     <button id="next-refran" class="btn-secondary" style="display:none;" onclick="siguienteRefran()">Siguiente →</button><br>
-    <button class="btn-back-light" onclick="volverMenu()">⬅ Volver al Menú</button>
+    <button class="btn-back-light" onclick="APP_MODE ? appVolverHome() : volverMenu()">⬅ Volver al Menú</button>
   </div>
 </div>
 
@@ -327,7 +327,7 @@
     <div id="estanteria" class="items-grid" style="display:none;"></div>
     <div id="despensa-msg" class="feedback-msg">Haz clic en Iniciar para comenzar</div>
     <button id="start-despensa" class="btn-secondary" onclick="iniciarDespensa()">Iniciar</button><br>
-    <button class="btn-back" onclick="volverMenu()">⬅ Volver al Menú</button>
+    <button class="btn-back" onclick="APP_MODE ? appVolverHome() : volverMenu()">⬅ Volver al Menú</button>
   </div>
 </div>
 
@@ -339,7 +339,7 @@
     <div id="intruso-grid" class="intruso-grid"></div>
     <div id="intruso-feedback" class="feedback-msg light"></div>
     <button id="next-intruso" class="btn-secondary" style="display:none;" onclick="siguienteIntruso()">Siguiente →</button><br>
-    <button class="btn-back-light" onclick="volverMenu()">⬅ Volver al Menú</button>
+    <button class="btn-back-light" onclick="APP_MODE ? appVolverHome() : volverMenu()">⬅ Volver al Menú</button>
   </div>
 </div>
 
@@ -353,7 +353,7 @@
     <div id="grid-sopa" class="sopa-grid"></div>
     <div id="sopa-msg" class="feedback-msg light"></div>
     <button id="nueva-sopa-btn" class="btn-secondary" onclick="nuevaSopaMismaTema()" style="margin-right:10px;">🔄 Nueva sopa</button><br>
-    <button class="btn-back-light" onclick="volverMenu()">⬅ Volver al Menú</button>
+    <button class="btn-back-light" onclick="APP_MODE ? appVolverHome() : volverMenu()">⬅ Volver al Menú</button>
   </div>
 </div>
 
@@ -377,7 +377,7 @@
     </div>
     <div id="sudoku-msg" class="sudoku-msg"></div>
     <button class="btn-secondary" onclick="nuevoSudoku()" style="margin-top:16px;">🔄 Nueva partida</button><br>
-    <button class="btn-back-light" onclick="volverMenu()">⬅ Volver al Menú</button>
+    <button class="btn-back-light" onclick="APP_MODE ? appVolverHome() : volverMenu()">⬅ Volver al Menú</button>
   </div>
 </div>
 
@@ -411,69 +411,45 @@
 
     if (APP_MODE) {
       document.body.classList.add('app-mode');
-
-      // IDs de secciones web que NO queremos en la app
-      var SOLO_WEB = [
-        'main-content'  // todo: hero + beneficios + blog + suscripción
-      ];
-
-      // Ocultar secciones web al cargar
-      document.addEventListener('DOMContentLoaded', function() {
-        SOLO_WEB.forEach(function(id) {
-          var el = document.getElementById(id);
-          if (el) el.style.display = 'none';
-        });
-
-        // Ocultar footer
-        var footer = document.querySelector('footer');
-        if (footer) footer.style.display = 'none';
-
-        // Mostrar pantalla de inicio de la app
-        mostrarPantallaApp();
-      });
     }
 
-    // Muestra la pantalla principal de la app: topbar + Riti + grid de juegos
-    function mostrarPantallaApp() {
+    // Al cargar: ocultar secciones web, mostrar pantalla app
+    document.addEventListener('DOMContentLoaded', function() {
       if (!APP_MODE) return;
 
-      // Ocultar todos los juegos activos
-      document.querySelectorAll('.game-section').forEach(function(s) {
-        s.style.display = 'none';
-      });
+      // main-content oculto (hero, beneficios, blog, suscripción)
+      var mc = document.getElementById('main-content');
+      if (mc) mc.style.display = 'none';
 
-      // Mostrar topbar y mensaje de Riti
+      // footer oculto
+      var footer = document.querySelector('footer');
+      if (footer) footer.style.display = 'none';
+
+      // Mostrar elementos app
       document.getElementById('app-topbar').style.display = 'flex';
       document.getElementById('riti-app-tip').style.display = 'flex';
-
-      // Mostrar el panel de juegos de la app
       document.getElementById('app-home').style.display = 'block';
+    });
 
-      // Scroll arriba
-      window.scrollTo(0, 0);
+    // Abrir juego desde la app: llamamos a mostrarJuego original (que usa .active)
+    // y ocultamos el home de la app
+    function appAbrirJuego(id) {
+      document.getElementById('app-home').style.display = 'none';
+      document.getElementById('riti-app-tip').style.display = 'none';
+      mostrarJuego(id); // función original de ritmo-mental.js
     }
 
-    // Sobreescribimos volverMenu para que en app vuelva a la pantalla app
-    var _volverMenuOriginal = window.volverMenu;
-    window.volverMenu = function() {
-      if (APP_MODE) {
-        mostrarPantallaApp();
-      } else if (_volverMenuOriginal) {
-        _volverMenuOriginal();
-      }
-    };
-
-    // Sobreescribimos mostrarJuego para que en app oculte el home
-    var _mostrarJuegoOriginal = window.mostrarJuego;
-    window.mostrarJuego = function(id) {
-      if (APP_MODE) {
-        document.getElementById('app-home').style.display = 'none';
-        document.getElementById('riti-app-tip').style.display = 'none';
-      }
-      if (_mostrarJuegoOriginal) {
-        _mostrarJuegoOriginal(id);
-      }
-    };
+    // Volver al home de la app desde un juego
+    // volverMenu() original: quita .active de juegos y hace show de main-content
+    // Nosotros lo llamamos y luego volvemos a ocultar main-content y mostrar app-home
+    function appVolverHome() {
+      volverMenu(); // limpia estado del juego y quita .active
+      var mc = document.getElementById('main-content');
+      if (mc) mc.style.display = 'none'; // volver a ocultar lo que volverMenu mostró
+      document.getElementById('app-home').style.display = 'block';
+      document.getElementById('riti-app-tip').style.display = 'flex';
+      window.scrollTo(0, 0);
+    }
   </script>
 
    <!-- Registro del Service Worker (PWA) -->
