@@ -2,7 +2,7 @@
   "name": "Ritmo Mental",
   "short_name": "Ritmo Mental",
   "description": "Entrena tu mente cada día con Riti, tu búho guía.",
-  "start_url": "./",
+  "start_url": "./app/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#1D5C52",
